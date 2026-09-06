@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEENATFLIX ADMIN - CEO</title>
+<style>
+body{background:#0a0a0a;color:#fff;font-family:Arial,sans-serif;margin:0;padding:8px}
+.header{background:linear-gradient(135deg,#ff006a,#ff8a00);padding:12px;border-radius:15px;text-align:center;margin-bottom:12px}
+.header h2{margin:5px 0;font-size:16px}
+.nav{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.nav button{background:rgba(0,0,0,0.4);color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:bold;font-size:13px}
+.card{background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:12px;margin-bottom:12px}
+label{font-size:12px;color:#aaa;margin-top:8px;display:block}
+input,textarea,select{width:100%;background:#2a2a2a;color:#fff;border:1px solid #444;border-radius:8px;padding:11px;margin:5px 0;box-sizing:border-box;font-size:14px}
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.voice-btn{background:#2a2a2a;color:#fff;border:none;padding:13px;border-radius:10px;font-weight:bold;font-size:13px}
+.voice-btn.active{background:#ff006a}
+.subtitleBox{border:3px solid #ff006a;background:#000;border-radius:12px;padding:14px;text-align:center;font-weight:bold;margin:10px 0;min-height:40px}
+.action{width:100%;padding:13px;border:none;border-radius:10px;font-weight:bold;margin:5px 0;font-size:14px}
+.green{background:#00c853;color:#fff}
+.orange{background:#ff8a00;color:#fff}
+.dark{background:#2a2a2a;color:#fff}
+.pink{background:#ff006a;color:#fff;font-size:16px}
+.previewBox{margin:10px 0;background:#1a1a1a;border:2px dashed #ff006a;border-radius:12px;min-height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.previewBox img{width:100%;max-height:380px;object-fit:contain;border-radius:10px}
+</style>
+</head>
+<body>
+
+<div class="header">
+<div style="font-weight:bold">👑 YOUR 19 ORIGINAL STORIES - STATIC</div>
+<div class="nav" style="margin-top:8px">
+<button onclick="location.href='index.html'">🏠 Home</button>
+<button onclick="location.href='world.html'">🌍 World</button>
+<button onclick="ceoLogout()">🔒 Logout</button>
+</div>
+</div>
+
+<div class="card">
+<div style="font-weight:bold;margin-bottom:6px">📝 YOUR 19 MOVIES - CEO Titles</div>
+<select id="movieSelect" onchange="loadMovieData()">
+<option value="AMARA (p1)">AMARA (p1)</option>
+<option value="AMARA.jpg">AMARA.jpg</option>
+<option value="THE-LIBRARY-SECRET.jpg">THE-LIBRARY-SECRET.jpg</option>
+<option value="THE-RIVER-BRIDE.jpg">THE-RIVER-BRIDE.jpg</option>
+<option value="THE-STOLEN-BABY.jpg">THE-STOLEN-BABY.jpg</option>
+<option value="THE-WHITE-MAN.jpg">THE-WHITE-MAN.jpg</option>
+<option value="THE-ABANDONED-HUTS.jpg">THE-ABANDONED-HUTS.jpg</option>
+<option value="THE-TWINS.jpg">THE-TWINS.jpg</option>
+<option value="MISSING-BUT-FOUND.jpg">MISSING-BUT-FOUND.jpg</option>
+<option value="SECRETS -OF-THE-LETTER.jpg">SECRETS -OF-THE-LETTER.jpg</option>
+<option value="THE-GENEROUS-HUNTER.jpg">THE-GENEROUS-HUNTER.jpg</option>
+<option value="THE-FOOD-SELLER.jpg">THE-FOOD-SELLER.jpg</option>
+<option value="THE-SLAVE-TRADE.jpg">THE-SLAVE-TRADE.jpg</option>
+<option value="THE-HEADMASTER-SECRET.jpg">THE-HEADMASTER-SECRET.jpg</option>
+<option value="FORGOTTEN-PROMISE.jpg">FORGOTTEN-PROMISE.jpg</option>
+<option value="THE-MARKET-GIRL.jpg">THE-MARKET-GIRL.jpg</option>
+<option value="MY-STEPMOTHERS-DAUGHTER.jpg">MY-STEPMOTHERS-DAUGHTER.jpg</option>
+<option value="FOREST-OF-NO-RETURN.jpg">FOREST-OF-NO-RETURN.jpg</option>
+<option value="SHATTERED-VOW.jpg">SHATTERED-VOW.jpg</option>
+<option value="DEATH-OF-NO-RETURN.jpg">DEATH-OF-NO-RETURN.jpg</option>
+<option value="ANANSE.jpg">ANANSE AND THE VILLAGE THAT NEVER SLEPT - NEW 20</option>
+</select>
+
+<input type="text" id="titleInput" value="AMARA" placeholder="Title">
+<input type="text" id="descInput" placeholder="Short Description">
+<textarea id="scriptInput" rows="7" placeholder="KING: Hello my queen&#10;QUEEN: Yes my king&#10;PRINCESS AMARA: Father!">KING: Hello my queen
+QUEEN: Yes my king
+PRINCESS AMARA: Father!</textarea>
+
+<div style="display:flex;align-items:center;gap:8px;background:#2a2a2a;border-radius:8px;padding:6px">
+<input type="file" id="fileInput" accept="image/*" onchange="previewFullImage(event)" style="margin:0;padding:6px;background:#fff;color:#000;width:120px">
+<span id="fileLabel" style="font-size:13px">552531.jpg</span>
+</div>
+
+<!-- 👇🏻 ONLY NEW THING ADDED CEO - FULL IMAGE SHOW PLACE -->
+<div class="previewBox" id="previewBox">
+<span style="color:#777;font-size:13px">📸 Full poster will appear here when you choose from gallery</span>
+</div>
+
+<label>🌍 Language</label>
+<select id="lang"><option>🇬🇭 Ghana English</option><option>🇺🇸 US English</option></select>
+
+<div style="margin-top:10px;font-weight:bold;font-size:13px">🎤 20 Voices - Tap to Test with Subtitles</div>
+<div class="voice-grid" id="voiceGrid">
+<button class="voice-btn active">Narrator Male</button>
+<button class="voice-btn">Narrator Female</button>
+<button class="voice-btn">King Deep</button>
+<button class="voice-btn">Queen Mother</button>
+<button class="voice-btn">Prince</button>
+<button class="voice-btn">Princess Amara</button>
+<button class="voice-btn">Old Chief</button>
+<button class="voice-btn">Old Woman</button>
+<button class="voice-btn">Boy Child</button>
+<button class="voice-btn">Girl Child</button>
+<button class="voice-btn">Guard Deep</button>
+<button class="voice-btn">Maid Soft</button>
+<button class="voice-btn">Pastor Male</button>
+<button class="voice-btn">Warrior Male</button>
+<button class="voice-btn">Witch Female</button>
+<button class="voice-btn">Husband</button>
+<button class="voice-btn">Wife</button>
+<button class="voice-btn">Friend Male</button>
+<button class="voice-btn">Friend Female</button>
+<button class="voice-btn">Crying Girl</button>
+</div>
+
+<div class="subtitleBox" id="subtitleBox">🎬 Subtitles with yellow word will appear here... Tap a voice!</div>
+
+<button class="action green" onclick="playAll()">▶️ PLAY ALL (Multi-Voice Movie)</button>
+<button class="action orange" onclick="pauseResume()">⏸️ PAUSE / RESUME</button>
+<button class="action dark" onclick="stopAudio()">⏹️ STOP</button>
+<button class="action dark" onclick="testVoices()">🔊 TEST 20 VOICES</button>
+<button class="action pink" onclick="postToWorldHome()">📤 POST TO WORLD + HOME</button>
+<button class="action dark" onclick="ceoLogout()">Logout</button>
+</div>
+
+<div class="card">
+<div style="font-weight:bold">📋 Posted</div>
+<div id="postedArea" style="font-size:13px;color:#aaa;margin-top:6px">Your posted movies will appear here</div>
+</div>
+
+<script>
+// --- HIDDEN PASSWORD - MAINTAINED - ONLY CEO KNOWS ---
+const HIDDEN_CEO_PASSWORD = "ZEENATFLIX_CEO_2024_GH";
+let CEO_LOGGED = localStorage.getItem('ceo_auth') === 'true';
+let selectedBase64 = null;
+
+// Check password on load - hidden
+(function checkAuth(){
+  if(!CEO_LOGGED){
+    let p = prompt("CEO Enter Hidden Password:");
+    if(p!== HIDDEN_CEO_PASSWORD){
+      document.body.innerHTML = "<h2 style='text-align:center;margin-top:100px;color:#ff006a'>❌ Wrong Password CEO Only!</h2>";
+      return;
+    }
+    localStorage.setItem('ceo_auth','true');
+    CEO_LOGGED = true;
+  }
+})();
+
+function previewFullImage(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  document.getElementById('fileLabel').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    selectedBase64 = e.target.result;
+    document.getElementById('previewBox').innerHTML = '<img src="'+selectedBase64+'">';
+    document.getElementById('subtitleBox').innerHTML = '✅ <span style="color:yellow">'+file.name+'</span> loaded - Full preview above!';
+  };
+  reader.readAsDataURL(file);
+}
+
+function loadMovieData(){
+  const v = document.getElementById('movieSelect').value;
+  document.getElementById('titleInput').value = v.replace('.jpg','').replace('(p1)','').trim();
+  // Try to show existing static image
+  document.getElementById('previewBox').innerHTML = '<img src="'+v+'" onerror="this.parentElement.innerHTML=\'<span style=color:#777>Choose new image from gallery - '+v+' not found locally</span>\'">';
+  document.getElementById('fileLabel').textContent = v;
+}
+
+function playAll(){ document.getElementById('subtitleBox').innerHTML = '▶️ Playing movie with <span style="color:yellow">Multi-Voice</span>...'; }
+function pauseResume(){ document.getElementById('subtitleBox').innerHTML = '⏸️ Paused / Resumed'; }
+function stopAudio(){ document.getElementById('subtitleBox').innerHTML = '⏹️ Stopped'; }
+function testVoices(){ document.getElementById('subtitleBox').innerHTML = '🔊 Testing <span style="color:yellow">20 Voices</span>... Tap a voice!'; }
+
+function postToWorldHome(){
+  const title = document.getElementById('titleInput').value;
+  if(!title){ alert('Enter title'); return; }
+  if(!selectedBase64){
+    // If user selected from dropdown and didn't choose new file, try to keep dropdown image path
+    const dropdownVal = document.getElementById('movieSelect').value;
+    if(dropdownVal.includes('.jpg')){
+      selectedBase64 = dropdownVal;
+    } else {
+      alert('Please Choose File from gallery - full image will show!');
+      return;
+    }
+  }
+  let movies = JSON.parse(localStorage.getItem('zeenatflix_movies')||'[]');
+  movies.push({id:Date.now(),title:title,image:selectedBase64,category:'ghana world',date:new Date().toLocaleString()});
+  localStorage.setItem('zeenatflix_movies', JSON.stringify(movies));
+  document.getElementById('postedArea').innerHTML += '<div style="display:flex;gap:8px;align-items:center;background:#2a2a2a;padding:6px;border-radius:8px;margin:5px 0"><img src="'+selectedBase64+'" style="width:45px;height:45px;object-fit:cover;border-radius:6px"><div><b>'+title+'</b><br><small>Posted to WORLD + HOME ✅</small></div></div>';
+  document.getElementById('subtitleBox').innerHTML = '✅ <span style="color:yellow">'+title+'</span> POSTED to WORLD + HOME! Movie #'+(19+movies.length);
+}
+
+function ceoLogout(){
+  if(confirm('Logout CEO?')){
+    localStorage.removeItem('ceo_auth');
+    location.reload();
+  }
+}
+
+// voice tap
+document.querySelectorAll('.voice-btn').forEach(b=>{
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.voice-btn').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('subtitleBox').innerHTML = '🎤 Voice: <span style="color:yellow">'+this.textContent+'</span> ready! Tap PLAY ALL';
+  });
+});
+</script>
+</body>
+  </html>
