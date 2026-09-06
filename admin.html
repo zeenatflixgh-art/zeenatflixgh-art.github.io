@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEENATFLIX CEO - OLD + NEW - TIKTOK</title>
+<style>
+*{box-sizing:border-box} body{background:#000;color:#fff;font-family:Arial;margin:0;padding:0}
+.header{background:#000;border-bottom:1px solid #222;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.header b{color:#ff0050}.header button{background:#222;color:#fff;border:none;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.tab-bar{display:flex;gap:8px;padding:12px;background:#111;border-bottom:1px solid #222;position:sticky;top:52px;z-index:9}
+.tab{flex:1;padding:12px;border:none;border-radius:12px;font-weight:bold;background:#222;color:#888}
+.tab.active{background:#ff0050;color:#fff}
+.card{background:#121212;padding:16px;border-bottom:1px solid #222}
+.tiktok-upload{border:2px dashed #333;background:#0a0a0a;border-radius:16px;min-height:260px;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+.tiktok-upload img{width:100%;max-height:400px;object-fit:contain}
+input,textarea,select{width:100%;background:#1e1e1e;color:#fff;border:1px solid #2a2a2a;border-radius:12px;padding:14px;margin:8px 0}
+label{font-size:11px;color:#888;font-weight:bold;margin-top:10px;display:block}
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.voice-btn{background:#1e1e1e;border:1px solid #333;color:#fff;padding:10px;border-radius:10px;font-size:11px;font-weight:bold}.voice-btn.active{background:#ff0050}
+.subBox{background:#000;border:2px solid #ff0050;border-radius:12px;padding:12px;text-align:center;min-height:50px;margin:10px 0;font-weight:bold}
+.action{width:100%;padding:16px;border:none;border-radius:12px;font-weight:bold;margin:6px 0;font-size:15px}.pink{background:#ff0050;color:#fff}.dark{background:#222;color:#fff}.green{background:#25f4ee;color:#000}
+.small{font-size:11px;color:#666}.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="header">
+<b>👑 ZEENATFLIX CEO</b>
+<div><button onclick="location.href='index.html'">🏠 Home</button> <button onclick="location.href='world.html'">🌍 World</button> <button onclick="DO_LOGOUT()" style="background:#fff;color:#000;border:2px solid #ff0050">🔒 Logout</button></div>
+</div>
+
+<div class="card" id="loginCard" style="display:none;text-align:center;padding:40px 16px">
+<h2 style="color:#ff0050">CEO Login</h2>
+<input id="passInput" type="password" placeholder="Papaja6869$$" style="text-align:center">
+<button class="action pink" onclick="DO_LOGIN()">🔓 Unlock</button>
+<div id="passMsg" class="small"></div>
+</div>
+
+<div id="mainContent">
+
+<div class="tab-bar">
+<button class="tab active" id="tabOldBtn" onclick="SHOW_TAB('old')">📁 OLD 19 Posters - Add Story</button>
+<button class="tab" id="tabNewBtn" onclick="SHOW_TAB('new')">📱 NEW Poster - TikTok Gallery</button>
+</div>
+
+<!-- COMMON FIELDS -->
+<div class="card">
+<label>📝 Title</label>
+<input id="titleInput" placeholder="Ananse and the Village..." value="Ananse and the Village That Never Slept">
+<label>📄 Short Description (Home page)</label>
+<input id="descInput" placeholder="Short desc for Home + Google" value="When spider spins, no one sleeps. Ghana folktale Akokrom near Kumasi.">
+<label>📖 Long Description (World + SEO)</label>
+<textarea id="longDescInput" rows="2">Ashanti Region, near Kumasi, village Akokrom cursed no sleep. Ananse spider man cunning clever. Ghana folktale with 20 voices Twi Hausa Pidgin Yoruba Igbo. Zeenatflix original.</textarea>
+<label>🎬 Story - CHARACTER: dialogue</label>
+<textarea id="scriptInput" rows="7">NARRATOR: Long ago, Ashanti Region, near Kumasi, Akokrom village.
+OLD CHIEF: My people, no one can sleep!
+ANANSE: I am Ananse spider man!
+PRINCESS AMARA: Father, will Ananse save us?
+KING: If you fail, leave forever!
+BOY CHILD: Mama want sleep!
+GIRL CHILD: Papa eyes paining!
+WITCH: You woke spirits...
+CRYING GIRL: Mama want sleep sob...
+NARRATOR FEMALE: Ananse spun web and Akokrom slept.
+PRINCE: Hero!</textarea>
+</div>
+
+<!-- TAB OLD -->
+<div class="card" id="oldTab">
+<div style="font-weight:bold;color:#ff8a00">📁 UPDATE OLD 19 POSTERS - Choose which old poster you want to add story to</div>
+<div class="small">Your old 19 posters in index.html have no stories. Select one here, add Title/Desc/Story above, then POST. Story will attach to that poster! No need gallery!</div>
+<select id="oldPosterSelect">
+<option value="">-- Choose OLD poster to add story --</option>
+<option value="AMARA.jpg">1. AMARA.jpg</option>
+<option value="THE-LIBRARY-SECRET.jpg">2. THE-LIBRARY-SECRET.jpg</option>
+<option value="THE-RIVER-BRIDE.jpg">3. THE-RIVER-BRIDE.jpg</option>
+<option value="THE-STOLEN-BABY.jpg">4. THE-STOLEN-BABY.jpg</option>
+<option value="THE-WHITE-MAN.jpg">5. THE-WHITE-MAN.jpg</option>
+<option value="THE-ABANDONED-HUTS.jpg">6. THE-ABANDONED-HUTS.jpg</option>
+<option value="THE-TWINS.jpg">7. THE-TWINS.jpg</option>
+<option value="MISSING-BUT-FOUND.jpg">8. MISSING-BUT-FOUND.jpg</option>
+<option value="SECRETS-OF-THE-LETTER.jpg">9. SECRETS-OF-THE-LETTER.jpg</option>
+<option value="THE-GENEROUS-HUNTER.jpg">10. THE-GENEROUS-HUNTER.jpg</option>
+<option value="THE-FOOD-SELLER.jpg">11. THE-FOOD-SELLER.jpg</option>
+<option value="THE-SLAVE-TRADE.jpg">12. THE-SLAVE-TRADE.jpg</option>
+<option value="THE-HEADMASTER-SECRET.jpg">13. THE-HEADMASTER-SECRET.jpg</option>
+<option value="FORGOTTEN-PROMISE.jpg">14. FORGOTTEN-PROMISE.jpg</option>
+<option value="THE-MARKET-GIRL.jpg">15. THE-MARKET-GIRL.jpg</option>
+<option value="MY-STEPMOTHERS-DAUGHTER.jpg">16. MY-STEPMOTHERS-DAUGHTER.jpg</option>
+<option value="FOREST-OF-NO-RETURN.jpg">17. FOREST-OF-NO-RETURN.jpg</option>
+<option value="SHATTERED-VOW.jpg">18. SHATTERED-VOW.jpg</option>
+<option value="DEATH-OF-NO-RETURN.jpg">19. DEATH-OF-NO-RETURN.jpg</option>
+</select>
+<div id="oldPreview" class="tiktok-upload" style="min-height:160px;margin-top:10px"><span style="color:#666">📁 Old poster preview</span></div>
+<button class="action pink" onclick="POST_OLD()">📤 UPDATE OLD POSTER WITH STORY</button>
+</div>
+
+<!-- TAB NEW -->
+<div class="card hidden" id="newTab">
+<div style="font-weight:bold;color:#25f4ee">📱 NEW POSTER - TIKTOK GALLERY ONLY - No static</div>
+<div class="small">Tap box to choose from phone gallery like TikTok - Your 552531.jpg ANANSE - New poster #20, #21 etc</div>
+<div class="tiktok-upload" id="uploadBox" onclick="fileInput.click()">
+<div style="text-align:center;color:#666"><div style="font-size:40px">📸</div><div style="color:#fff;font-weight:bold">Tap to choose from Gallery - TikTok Style</div><div style="font-size:11px;margin-top:4px">Any image - ANANSE, 552531.jpg</div><div style="background:#ff0050;color:#fff;padding:6px 14px;border-radius:20px;display:inline-block;margin-top:8px;font-size:11px">Choose File</div></div>
+</div>
+<input type="file" id="fileInput" accept="image/*" class="hidden">
+<div style="text-align:center;margin-top:8px"><span id="usingText" style="background:#333;color:#fff;padding:6px 12px;border-radius:20px;font-size:11px">Using: Nothing yet</span></div>
+<div id="gInfo" class="small" style="text-align:center;color:#25f4ee;font-weight:bold;margin-top:4px"></div>
+<button class="action pink" onclick="POST_NEW()">📤 POST NEW POSTER - TikTok Style</button>
+</div>
+
+<!-- VOICE + LANG - COMMON -->
+<div class="card">
+<label>🌍 9 Languages</label>
+<select id="langSelect">
+<option value="en-GH">🇬🇭 Ghana English</option><option value="en-NG">🇳🇬 Nigeria English</option><option value="en-GB">🇬🇧 British UK</option><option value="en-US">🇺🇸 US English</option><option value="ak">🇬🇭 Twi</option><option value="ha">🇳🇬 Hausa</option><option value="en-NG-pidgin">🇳🇬 Pidgin</option><option value="yo">🇳🇬 Yoruba</option><option value="ig">🇳🇬 Igbo</option>
+</select>
+<label>🎤 20 Voices - Tap slowly - Don't tap fast!</label>
+<div class="voice-grid" id="voiceGrid"></div>
+<div class="subBox" id="subtitleBox">Tap UNLOCK first - Wait 2 sec - Then tap ONE voice</div>
+<button class="action dark" onclick="UNLOCK_VOICE()" style="border:2px solid #ff0050">🔓 UNLOCK AUDIO - MUST TAP ONCE</button>
+<button class="action green" onclick="PLAY_ALL()">▶️ PLAY ALL</button>
+<button class="action dark" onclick="speechSynthesis.cancel(); isSpeaking=false; subtitleBox.textContent='⏹️ Stopped'">⏹️ STOP</button>
+</div>
+
+</div>
+
+<script>
+const PASSWORD="Papaja6869$$";
+function DO_LOGIN(){ let p=passInput.value.trim(); if(p===PASSWORD){ localStorage.setItem('ceo_auth','true'); loginCard.style.display='none'; mainContent.style.display='block'; } else{ passMsg.textContent='❌ Wrong: '+p; } }
+function DO_LOGOUT(){ localStorage.clear(); location.href=location.pathname+'?logout='+Date.now(); }
+(function(){ if(localStorage.getItem('ceo_auth')!=='true'){ loginCard.style.display='block'; mainContent.style.display='none'; } })();
+function SHOW_TAB(t){ if(t==='old'){ oldTab.classList.remove('hidden'); newTab.classList.add('hidden'); tabOldBtn.classList.add('active'); tabNewBtn.classList.remove('active'); } else { newTab.classList.remove('hidden'); oldTab.classList.add('hidden'); tabNewBtn.classList.add('active'); tabOldBtn.classList.remove('active'); } }
+
+// OLD POSTERS
+let oldSel=document.getElementById('oldPosterSelect'), oldPrev=document.getElementById('oldPreview');
+oldSel.addEventListener('change',function(){ let v=this.value; if(!v) { oldPrev.innerHTML='<span style=color:#666>📁 Old poster preview</span>'; return; } oldPrev.innerHTML='<img src="'+v+'" onerror="this.parentElement.innerHTML=\'📁 '+v+'\'"><div style=position:absolute;bottom:8px;left:8px;background:#ff0050;color:#fff;padding:4px 10px;border-radius:12px;font-size:11px>Updating: '+v+'</div>'; });
+
+// NEW GALLERY
+let galleryB64=null, fileIn=document.getElementById('fileInput'), uploadBox=document.getElementById('uploadBox');
+fileIn.addEventListener('change',function(e){
+  let file=e.target.files[0]; if(!file) return;
+  gInfo.textContent='Loading '+file.name+'... '+Math.round(file.size/1024)+'KB';
+  let r=new FileReader(); r.onload=function(ev){
+    let img=new Image(); img.onload=function(){
+      let c=document.createElement('canvas'); let maxW=900; let sc=maxW/img.width; if(sc>1) sc=1; c.width=img.width*sc; c.height=img.height*sc; c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      galleryB64=c.toDataURL('image/jpeg',0.75);
+      uploadBox.innerHTML='<img src="'+galleryB64+'">'; usingText.textContent='Using: GALLERY - '+file.name+' - TikTok'; usingText.style.background='#25f4ee'; usingText.style.color='#000';
+      gInfo.textContent='✅ Ready: '+file.name+' - '+Math.round(file.size/1024)+'KB -> '+Math.round(galleryB64.length/1000)+'KB compressed - Will post!';
+    }; img.src=ev.target.result;
+  }; r.readAsDataURL(file);
+});
+
+// VOICE
+let voices=[], isSpeaking=false; function loadVoices(){ voices=speechSynthesis.getVoices(); } loadVoices(); if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices;
+function UNLOCK_VOICE(){ loadVoices(); speechSynthesis.cancel(); isSpeaking=false; let u=new SpeechSynthesisUtterance("Audio unlocked"); u.onend=function(){ subtitleBox.textContent="✅ Unlocked! Voices: "+voices.length+" - Tap ONE voice slowly!"; }; speechSynthesis.speak(u); }
+const VOICE_CFG={"Narrator Male":{r:0.85,p:0.6},"King Deep":{r:0.70,p:0.28},"Queen Mother":{r:0.78,p:0.85},"Princess Amara":{r:1.15,p:1.6},"Old Chief":{r:0.65,p:0.25},"Old Woman":{r:0.70,p:0.90},"Boy Child":{r:1.25,p:1.75},"Girl Child":{r:1.30,p:1.85},"Guard Deep":{r:0.74,p:0.30},"Maid Soft":{r:1.0,p:1.40},"Pastor Male":{r:0.84,p:0.65},"Warrior Male":{r:0.86,p:0.45},"Witch Female":{r:0.68,p:0.75},"Husband":{r:0.92,p:0.70},"Wife":{r:1.05,p:1.30},"Friend Male":{r:1.08,p:0.80},"Friend Female":{r:1.10,p:1.35},"Crying Girl":{r:0.85,p:1.55},"Narrator Female":{r:0.92,p:1.20},"Prince":{r:0.96,p:0.75}};
+let curVoice="Narrator Male"; let vGrid=document.getElementById('voiceGrid');
+Object.keys(VOICE_CFG).forEach(name=>{ let b=document.createElement('button'); b.className='voice-btn'+(name===curVoice?' active':''); b.textContent=name; b.onclick=function(){ document.querySelectorAll('.voice-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); curVoice=name; TEST_ONE(name); }; vGrid.appendChild(b); });
+function getVoice(lang){ if(voices.length===0) loadVoices(); let l=lang.toLowerCase(); return voices.find(x=>x.lang.toLowerCase().includes(l))||voices.find(x=>x.lang.toLowerCase().startsWith(l.split('-')[0]))||voices.find(x=>x.lang.toLowerCase().includes('en'))||voices[0]; }
+function SPEAK(text,vName,lang,cb){ if(isSpeaking){ speechSynthesis.cancel(); isSpeaking=false; setTimeout(()=>SPEAK(text,vName,lang,cb),400); return; } isSpeaking=true; let u=new SpeechSynthesisUtterance(text); let cfg=VOICE_CFG[vName]; let sys=getVoice(lang); if(sys) u.voice=sys; u.rate=cfg.r; u.pitch=cfg.p; u.volume=1; if(lang==='ak'||lang==='ha') u.lang='en-GH'; else if(lang==='yo'||lang==='ig'||lang.includes('pidgin')) u.lang='en-NG'; else u.lang=lang; let ws=text.split(' '); let i=0; u.onboundary=()=>{ if(i<ws.length){ subtitleBox.innerHTML='<span style="color:#ff0050">'+vName+':</span> '+ws.map((w,idx)=>idx===i?'<span style="background:#ff0050;color:#fff;padding:2px 5px;border-radius:4px">'+w+'</span>':w).join(' '); i++; } }; u.onend=()=>{ isSpeaking=false; if(cb) cb(); }; u.onerror=(e)=>{ isSpeaking=false; subtitleBox.textContent=e.error==='interrupted'?'⚠️ Tapped too fast! Wait 1 sec then tap again':'❌ '+e.error; }; speechSynthesis.speak(u); }
+function TEST_ONE(name){ let lang=langSelect.value; let txt="Hello I am "+name+" "+lang; if(lang==="ak") txt="Maakye Me ne "+name+" Twi!"; if(lang==="ha") txt="Sannu Ni ne "+name+" Hausa!"; if(lang.includes("pidgin")) txt="How you dey? Na me be "+name+" Pidgin!"; SPEAK(txt,name,lang); }
+function PLAY_ALL(){ let lines=scriptInput.value.split('\n').filter(l=>l.includes(':')); let lang=langSelect.value; let idx=0; function nxt(){ if(idx>=lines.length){ subtitleBox.textContent='✅ Finished'; isSpeaking=false; return; } let line=lines[idx]; let ch=line.split(':')[0].toUpperCase(); let txt=line.split(':').slice(1).join(':'); let v=curVoice; if(ch.includes('KING')) v='King Deep'; else if(ch.includes('QUEEN')) v='Queen Mother'; else if(ch.includes('PRINCESS')) v='Princess Amara'; else if(ch.includes('OLD CHIEF')) v='Old Chief'; else if(ch.includes('ANANSE')) v='Warrior Male'; else if(ch.includes('NARRATOR FEMALE')) v='Narrator Female'; else if(ch.includes('NARRATOR')) v='Narrator Male'; SPEAK(txt,v,lang,()=>{ idx++; setTimeout(nxt,600); }); } nxt(); }
+
+function POST_OLD(){
+  let oldFile=oldSel.value; if(!oldFile){ alert('📁 Choose OLD poster first! e.g. AMARA.jpg'); return; }
+  let data={title:titleInput.value,shortDesc:descInput.value,longDesc:longDescInput.value,story:scriptInput.value,mode:'old_static',staticFile:oldFile,gallery:null,lang:langSelect.value,date:Date.now(),id:oldFile};
+  let all=JSON.parse(localStorage.getItem('zeenatflix_movies')||'[]');
+  // Remove old entry if same poster exists - update
+  all=all.filter(x=>x.staticFile!==oldFile);
+  all.push(data); localStorage.setItem('zeenatflix_movies',JSON.stringify(all));
+  localStorage.setItem('zeenatflix_old_map', JSON.stringify(all.filter(x=>x.mode==='old_static')));
+  alert('✅ OLD POSTER UPDATED!\n\nPoster: '+oldFile+'\nTitle: '+data.title+'\nShort: '+data.shortDesc.substring(0,40)+'...\n\nNow go to index.html/world.html - When customers tap '+oldFile+', your story will play! No need gallery!');
+}
+function POST_NEW(){
+  if(!galleryB64){ alert('📱 Choose from gallery first! Tap big box - TikTok style!'); return; }
+  let data={title:titleInput.value,shortDesc:descInput.value,longDesc:longDescInput.value,story:scriptInput.value,mode:'new_gallery',staticFile:null,gallery:galleryB64,lang:langSelect.value,date:Date.now(),id:Date.now()};
+  let all=JSON.parse(localStorage.getItem('zeenatflix_movies')||'[]'); all.push(data); localStorage.setItem('zeenatflix_movies',JSON.stringify(all));
+  alert('✅ NEW POSTER POSTED TIKTOK STYLE!\nTitle: '+data.title+'\nImage: Gallery '+Math.round(galleryB64.length/1000)+'KB\n\nGo to Home/World - New poster #20,21... appears like TikTok feed!');
+}
+</script>
+</body>
+  </html>
