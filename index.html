@@ -52,7 +52,7 @@ const posters=[
 function go(id){let s=JSON.parse(localStorage.getItem('zeenat_poster_stories')||"{}");let c=JSON.parse(localStorage.getItem('zeenatflix_movies')||"[]").find(m=>m.id==id);if(!s[id]&&!c){alert("🔒 Coming Soon! This story is not ready yet. Please try another one!");return;}location.href='story.html?id='+id;}
 function render(){let q=document.getElementById('search').value.toLowerCase();let stories=JSON.parse(localStorage.getItem('zeenat_poster_stories')||"{}");let custom=JSON.parse(localStorage.getItem('zeenatflix_movies')||"[]");let all=[...posters];custom.forEach(cm=>{if(!all.find(p=>p.id==cm.id))all.unshift({id:cm.id,t:cm.title,i:cm.image,v:"NEW"})});let h="";all.forEach(p=>{if(!p.t.toLowerCase().includes(q))return;let has=stories[p.id]||custom.find(m=>m.id==p.id);let img=localStorage.getItem('zeenat_poster_img_'+p.id)||p.i;let badge=!has?`<div class="lock">🔒</div>`:`<div class="open">🔓 OPEN</div>`;h+=`<div class="card" onclick="go('${p.id}')"><img src="${img}" onerror="this.src='https://via.placeholder.com/300x400/ff8a00/fff?text=${encodeURIComponent(p.t)}'">${badge}<div class="info"><h3>${p.t}</h3><div class="meta">👁️ ${p.v} • Ghana</div></div></div>`});document.getElementById('grid').innerHTML=h;}
 render()
-  // === ZEENATFLIX OLD + NEW CONNECTED - PASTE HERE ===
+  // === ZEENATFLIX OLD + NEW CONNECTED - PASTE ===
 let movies=JSON.parse(localStorage.getItem('zeenatflix_movies')||'[]');
 let map={}; movies.forEach(m=>{ if(m.staticFile) map[m.staticFile]=m; });
 document.querySelectorAll('img').forEach(img=>{
@@ -60,7 +60,7 @@ document.querySelectorAll('img').forEach(img=>{
   if(map[file]){
     let m=map[file];
     img.style.border="3px solid #ff0050"; img.style.cursor="pointer"; img.style.borderRadius="12px";
-    img.parentElement.onclick=()=>{ localStorage.setItem('zeenatflix_play',JSON.stringify(m)); alert('▶️ PLAYING: '+m.title+'\n\n'+m.shortDesc); };
+    img.parentElement.onclick=function(){ localStorage.setItem('zeenatflix_play',JSON.stringify(m)); location.href='story.html'; };
   }
 });
 // Show new TikTok gallery posters #20,21...
@@ -68,8 +68,8 @@ let cont=document.createElement('div'); cont.style.cssText="display:grid;grid-te
 document.body.insertBefore(cont, document.querySelector('script'));
 movies.filter(x=>x.gallery).reverse().forEach(m=>{
   let d=document.createElement('div'); d.style.cssText="background:#151515;border-radius:12px;overflow:hidden;border:1px solid #222;cursor:pointer";
-  d.innerHTML=`<img src="${m.gallery}" style="width:100%;height:220px;object-fit:cover"><div style="padding:10px"><b style="font-size:12px">${m.title}</b><div style="font-size:11px;color:#777">${m.shortDesc||''}</div><div style="margin-top:6px;background:#ff0050;color:#fff;display:inline-block;padding:4px 10px;border-radius:12px;font-size:10px">▶️ NEW</div></div>`;
-  d.onclick=()=>{ localStorage.setItem('zeenatflix_play',JSON.stringify(m)); alert('▶️ PLAYING NEW: '+m.title); };
+  d.innerHTML='<img src="'+m.gallery+'" style="width:100%;height:220px;object-fit:cover"><div style="padding:10px"><b style="font-size:12px">'+m.title+'</b><div style="font-size:11px;color:#777">'+(m.shortDesc||'')+'</div><div style="margin-top:6px;background:#ff0050;color:#fff;display:inline-block;padding:4px 10px;border-radius:12px;font-size:10px">▶️ NEW</div></div>';
+  d.onclick=function(){ localStorage.setItem('zeenatflix_play',JSON.stringify(m)); location.href='story.html'; };
   cont.appendChild(d);
 });
 </script></body></html>
