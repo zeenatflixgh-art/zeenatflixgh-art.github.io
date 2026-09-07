@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeenatflix Admin - NEAT V3 AUTO</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#0a0a0a;color:#fff;padding:10px}
+.header{background:linear-gradient(90deg,#ff7a00,#ff006a);border-radius:20px;padding:10px;display:flex;gap:8px;justify-content:space-between;margin-bottom:12px}
+.header button{flex:1;background:#111;color:#fff;border:none;border-radius:20px;padding:10px 6px;font-weight:bold;font-size:13px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;padding:12px;border:none;border-radius:12px;font-weight:bold;font-size:12px;cursor:pointer}
+.tabs button.active{background:linear-gradient(90deg,#ff006a,#ff3d7a);color:#fff}
+.tabs button.inactive{background:#222;color:#888}
+.card{background:#1a1a1a;border-radius:16px;padding:14px;margin-bottom:12px;border:1px solid #2a2a2a}
+.label{font-size:13px;font-weight:bold;margin:12px 0 6px;display:flex;gap:6px}
+input,textarea,select{width:100%;background:#2a2a2a;border:1px solid #333;color:#ddd;border-radius:10px;padding:12px;font-size:13px;outline:none}
+textarea{resize:vertical;min-height:80px}
+textarea.story{min-height:180px;font-family:monospace}
+.file-box{background:#2a2a2a;border-radius:10px;padding:10px;display:flex;gap:8px;align-items:center}
+.btn-post{background:linear-gradient(90deg,#ff006a,#ff8c00);border:none;color:#fff;padding:14px;border-radius:12px;width:100%;font-weight:bold;font-size:14px;margin-top:14px;cursor:pointer}
+.btn-token{background:#222;border:1px solid #444;color:#fff;padding:10px;border-radius:10px;width:100%;margin-top:8px;cursor:pointer}
+.status{font-size:11px;margin-top:8px;padding:8px;border-radius:6px;background:#111;display:none}
+.small{font-size:10px;color:#888;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="header">
+<button onclick="location.href='index.html'">🏠 Home</button>
+<button onclick="location.href='world.html'">🌍 World</button>
+<button>🔒 Logout</button>
+</div>
+<div class="card" style="border:1px solid #ff006a">
+<div class="label">🔑 GitHub Token - ONE TIME</div>
+<div class="small">GitHub > Settings > Developer settings > Tokens (classic) > Generate > Check repo > Copy ghp_...</div>
+<input id="owner" value="zeenatflixgh-art" style="margin-top:8px">
+<input id="repo" value="zeenatflixgh-art.github.io" style="margin-top:6px">
+<input id="token" type="password" placeholder="Paste ghp_ token" style="margin-top:6px">
+<button class="btn-token" onclick="saveToken()">💾 Save Token</button>
+<div id="tokenStatus" class="status"></div>
+</div>
+<div class="tabs">
+<button id="tabOld" class="active" onclick="switchTab('old')">📁 OLD 19 Posters - Add Story</button>
+<button id="tabNew" class="inactive" onclick="switchTab('new')">📱 NEW Poster - TikTok Gallery</button>
+</div>
+<div class="card">
+<div id="oldSection">
+<div class="label">📁 Your 19 Posters - Static (Original)</div>
+<select id="posterSelect" onchange="onPosterChange()"><option value="">-- Choose poster --</option></select>
+<div class="label">📝 Title</div><input id="title">
+<div class="label">👥 Main Characters - Where you put characters name</div>
+<textarea id="chars" placeholder="Example for AMARA: NARRATOR, KING, QUEEN, AMARA, MOTHER, OLD CHIEF..."></textarea>
+<div class="label">📄 Short Description (Home page)</div><textarea id="short" placeholder="Short Description"></textarea>
+<div class="label">📖 Long Description (World + SEO) - FULL PAGE</div><textarea id="long" placeholder="Long Description for World full story page..."></textarea>
+<div class="label">🖼️ Choose Image From Phone</div>
+<div class="file-box"><input type="file" id="imageFile" accept="image/*" onchange="handleImage(this)"><span id="fileName" class="small">No file chosen</span></div>
+<img id="preview" style="display:none;width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-top:8px">
+<div class="label">🎬 Full Story - CHARACTER: dialogue - FULL PAGE</div><textarea id="full" class="story" placeholder="KING: hello&#10;QUEEN: hi my king"></textarea>
+<div class="label">🌍 Language</div><select id="lang"><option>🇬🇭 Ghana English</option><option>English</option></select>
+<div class="label">🏷️ TikTok Hashtags</div><input id="tags" placeholder="#ghanafolktale #fyp #kumasi">
+<button class="btn-post" onclick="publish()" id="pubBtn">🌍📦 POST TO WORLD + HOME - UPDATE OLD POSTER</button>
+<div id="pubStatus" class="status"></div>
+</div>
+<div id="newSection" style="display:none">
+<div class="label">📝 NEW Title - Empty</div><input id="newTitle" placeholder="Enter NEW story title...">
+<div class="label">👥 Main Characters</div><textarea id="newChars" placeholder="NARRATOR, KING, QUEEN..."></textarea>
+<div class="label">📄 Short Description</div><textarea id="newShort" placeholder="Short Description for Home..."></textarea>
+<div class="label">📖 Long Description - FULL PAGE</div><textarea id="newLong" placeholder="Long Description - Full page for World..."></textarea>
+<div class="label">🖼️ Choose Image From Phone - New Poster</div>
+<div class="file-box"><input type="file" id="newImageFile" accept="image/*" onchange="handleImage(this,'new')"><span id="newFileName" class="small">No file chosen</span></div>
+<img id="newPreview" style="display:none;width:100%;max-height:200px;border-radius:10px;margin-top:8px">
+<div class="label">🎬 Full Story - CHARACTER: dialogue</div><textarea id="newFull" class="story" placeholder="NARRATOR: Long ago..."></textarea>
+<div class="label">🌍 Language</div><select id="newLang"><option>🇬🇭 Ghana English</option></select>
+<div class="label">🏷️ TikTok Hashtags</div><input id="newTags" placeholder="#ghanafolktale #fyp">
+<button class="btn-post" onclick="publishNew()" id="pubBtnNew">💾 POST TO WORLD + HOME</button>
+<div id="pubStatusNew" class="status"></div>
+</div>
+</div>
+</div>
+<script>
+const POSTERS=["THE STOLEN BABY","MISSING BUT FOUND","SECRETS OF THE LETTER","THE SLAVE TRADE","SHATTERED VOWS","THE ABANDONED HUTS","THE FOOD SELLER","AMARA","THE LIBRARY SECRET","THE RIVER BRIDE","THE WHITE MAN","THE TWINS","THE GENEROUS HUNTER","THE MARKET GIRL","MY STEPMOTHERS DAUGHTER","FORGOTTEN PROMISE","THE HEADMASTER SECRET","FORGOTTEN VOWS","THE SLIPPER","THE VILLAGE CHAMPION"];
+let imageBase64=null,newImageBase64=null,imageExt="jpg";
+function initPosters(){const s=document.getElementById('posterSelect');POSTERS.forEach(p=>{let o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);});}
+function switchTab(t){if(t==='old'){document.getElementById('oldSection').style.display='block';document.getElementById('newSection').style.display='none';document.getElementById('tabOld').className='active';document.getElementById('tabNew').className='inactive';}else{document.getElementById('oldSection').style.display='none';document.getElementById('newSection').style.display='block';document.getElementById('tabOld').className='inactive';document.getElementById('tabNew').className='active';}}
+function onPosterChange(){let v=document.getElementById('posterSelect').value;if(v)document.getElementById('title').value=v;}
+function handleImage(input,mode){let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=e=>{if(mode==='new'){newImageBase64=e.target.result;document.getElementById('newPreview').src=e.target.result;document.getElementById('newPreview').style.display='block';document.getElementById('newFileName').textContent=f.name;}else{imageBase64=e.target.result;document.getElementById('preview').src=e.target.result;document.getElementById('preview').style.display='block';document.getElementById('fileName').textContent=f.name;}imageExt=f.name.split('.').pop()||'jpg';};r.readAsDataURL(f);}
+function saveToken(){localStorage.setItem('gh_owner',document.getElementById('owner').value.trim());localStorage.setItem('gh_repo',document.getElementById('repo').value.trim());localStorage.setItem('gh_token',document.getElementById('token').value.trim());let s=document.getElementById('tokenStatus');s.style.display='block';s.textContent='✅ Connected - Token Saved Inside!';s.style.color='#0f0';}
+window.onload=()=>{initPosters();if(localStorage.getItem('gh_owner'))document.getElementById('owner').value=localStorage.getItem('gh_owner');if(localStorage.getItem('gh_repo'))document.getElementById('repo').value=localStorage.getItem('gh_repo');if(localStorage.getItem('gh_token')){document.getElementById('token').value=localStorage.getItem('gh_token');let s=document.getElementById('tokenStatus');s.style.display='block';s.textContent='✅ Connected - Token Saved Inside!';s.style.color='#0f0';}};
+function parseChars(raw){let chars=[];if(!raw)return chars;if(raw.includes('|')){raw.split('\n').forEach(l=>{let p=l.split('|');if(p[0].trim())chars.push({name:p[0].trim().toUpperCase(),role:(p[1]||'Character').trim()});});}else{raw.split(',').forEach(n=>{let name=n.trim();if(name)chars.push({name:name.toUpperCase(),role:'Character'});});}chars=chars.filter(c=>c.name.length>2&&c.name.length<40);return chars.slice(0,12);}
+async function uploadImageIfNeeded(owner,repo,token,title,base64){if(!base64)return title.replace(/ /g,'_')+'.jpg';try{let fn=title.replace(/ /g,'_').replace(/[^A-Za-z0-9_\-]/g,'')+'.'+imageExt;let content=base64.split(',')[1];let url=`https://api.github.com/repos/${owner}/${repo}/contents/${fn}`;let h={Authorization:`token ${token}`,Accept:"application/vnd.github.v3+json"};let sha=null;let gr=await fetch(url,{headers:h});if(gr.ok){let d=await gr.json();sha=d.sha;}let body={message:`Upload ${fn}`,content:content};if(sha)body.sha=sha;let pr=await fetch(url,{method:"PUT",headers:{...h,"Content-Type":"application/json"},body:JSON.stringify(body)});if(pr.ok)return fn;return title.replace(/ /g,'_')+'.jpg';}catch(e){return title.replace(/ /g,'_')+'.jpg';}}
+async function publishStory(data,statusId,btnId){const owner=document.getElementById('owner').value.trim()||localStorage.getItem('gh_owner');const repo=document.getElementById('repo').value.trim()||localStorage.getItem('gh_repo');const token=document.getElementById('token').value.trim()||localStorage.getItem('gh_token');if(!owner||!repo||!token){alert('Save Token first!');return;}if(!data.title||!data.full){alert('Title + Full Story required');return;}let btn=document.getElementById(btnId);let st=document.getElementById(statusId);btn.textContent='⏳ Publishing... 10 sec';st.style.display='block';st.style.color='#fff';st.textContent='Uploading image...';let imgName=await uploadImageIfNeeded(owner,repo,token,data.title,data.imageBase64);st.textContent='Reading stories.json...';let chars=parseChars(data.charsRaw);if(chars.length==0)chars=[{name:data.title,role:'Main'}];let storyObj={t:data.title,img:imgName,free:true,unlocked:true,status:"FREE",immediateUnlock:true,date:new Date().toISOString(),short:data.short||data.title,long:data.long||data.short||data.title,characters:chars,full:data.full,tags:data.tags||'',lang:data.lang||'Ghana English'};let local={};try{local=JSON.parse(localStorage.getItem('zeenatflix_stories')||'{}');}catch(e){}local[data.title]=storyObj;localStorage.setItem('zeenatflix_stories',JSON.stringify(local));try{let url=`https://api.github.com/repos/${owner}/${repo}/contents/stories.json`;let headers={Authorization:`token ${token}`,Accept:"application/vnd.github.v3+json"};let res=await fetch(url,{headers});let existing={};let sha=null;if(res.ok){let d=await res.json();sha=d.sha;let dec=atob(d.content.replace(/\n/g,''));try{existing=JSON.parse(decodeURIComponent(escape(dec)));}catch{try{existing=JSON.parse(dec);}catch{existing={};}}}existing[data.title]=storyObj;let newStr=JSON.stringify(existing,null,2);let enc=btoa(unescape(encodeURIComponent(newStr)));st.textContent='Pushing to GitHub...';let putBody={message:`Publish ${data.title} FREE`,content:enc};if(sha)putBody.sha=sha;let putRes=await fetch(url,{method:"PUT",headers:{...headers,"Content-Type":"application/json"},body:JSON.stringify(putBody)});if(!putRes.ok){let t=await putRes.text();throw new Error(t);}st.textContent=`✅ SUCCESS! ${data.title} LIVE WORLD+HOME FREE! Reload after 2 mins`;st.style.color='#0f0';btn.textContent='✅ POSTED!';}catch(err){st.textContent='⚠️ Local FREE saved, GitHub sync failed: '+err.message.slice(0,200);st.style.color='orange';btn.textContent='💾 POST TO WORLD + HOME';}}
+function publish(){publishStory({title:document.getElementById('title').value.trim().toUpperCase(),charsRaw:document.getElementById('chars').value,short:document.getElementById('short').value,long:document.getElementById('long').value,full:document.getElementById('full').value,tags:document.getElementById('tags').value,lang:document.getElementById('lang').value,imageBase64:imageBase64},'pubStatus','pubBtn');}
+function publishNew(){publishStory({title:document.getElementById('newTitle').value.trim().toUpperCase(),charsRaw:document.getElementById('newChars').value,short:document.getElementById('newShort').value,long:document.getElementById('newLong').value,full:document.getElementById('newFull').value,tags:document.getElementById('newTags').value,lang:document.getElementById('newLang').value,imageBase64:newImageBase64},'pubStatusNew','pubBtnNew');}
+</script>
+</body>
+</html>
