@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story - ZEENATFLIX</title>
+<style>
+body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:12px}
+.topBar{background:linear-gradient(90deg,#ff0055,#ff8a00);padding:12px;border-radius:20px;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.backBtn{background:#fff;color:#000;padding:8px 16px;border-radius:20px;font-weight:900;text-decoration:none;font-size:13px}
+.poster{width:100%;max-height:420px;object-fit:contain;background:#000;border-radius:12px}
+.title{font-size:22px;font-weight:900;margin:12px 0 6px}
+.metaRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.metaChip{background:#1a1a1a;border:1px solid #222;padding:6px 12px;border-radius:20px;font-size:12px}
+.box{background:#1a1a1a;border:1px solid #222;border-radius:12px;padding:12px;margin:10px 0;font-size:13px;line-height:1.6}
+.boxTitle{font-weight:900;color:#ff8a00;margin-bottom:8px;font-size:14px}
+.readBtn{display:flex;gap:8px;margin:12px 0}
+.readBtn button{flex:1;padding:14px;border:none;border-radius:25px;font-weight:900;font-size:14px;cursor:pointer}
+.btnRead{background:linear-gradient(90deg,#ff0055,#ff8a00);color:#fff}
+.btnLike{background:#222;color:#fff;border:1px solid #333!important}
+.charGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.charCard{background:#0f0f0f;border:1px solid #333;border-radius:10px;padding:8px;text-align:center}
+.charCard b{color:#ffcc00;display:block;font-size:13px}
+.charCard span{color:#aaa;font-size:11px}
+.storyLine{margin:8px 0;padding:10px;background:#111;border-radius:8px;border-left:3px solid #ff0055}
+.charName{font-weight:900;color:#ff8a00;font-size:12px;margin-bottom:2px;text-transform:uppercase}
+.actionRow{display:flex;gap:8px;margin:12px 0}
+.actionRow button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:800;cursor:pointer}
+.share{background:#00e676;color:#000}.copy{background:#fff;color:#000}
+.followRow{display:flex;gap:8px;margin:10px 0}
+.followBtn{flex:1;padding:14px;border-radius:25px;border:none;font-weight:900;cursor:pointer;background:linear-gradient(90deg,#ff0055,#ff8a00);color:#fff}
+.followBtn.following{background:#00c853!important}
+.commentBox{background:#151515;border-radius:12px;padding:12px;margin-top:14px}
+.commentBox input{width:100%;background:#0a0a0a;border:1px solid #222;color:#fff;padding:12px;border-radius:10px;outline:none}
+.cItem{background:#0a0a0a;padding:8px 10px;border-radius:8px;margin:6px 0;font-size:13px}
+.tiktokBtn{display:block;background:linear-gradient(90deg,#ff0055,#ff8a00);color:#fff;text-align:center;padding:14px;border-radius:25px;text-decoration:none;font-weight:900;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="topBar"><a class="backBtn" href="index.html">← Back</a><b>🎬 ZEENATFLIX</b></div>
+<img id="poster" class="poster" src="">
+<h1 id="title" class="title"></h1>
+<div class="metaRow">
+<span class="metaChip" id="views">👁️ 0 views</span>
+<span class="metaChip" id="likes">❤️ 0 likes</span>
+<span class="metaChip" id="followers">👥 0 followers</span>
+<span class="metaChip" id="comCount">💬 0 comments</span>
+<span class="metaChip">⭐ 4.9</span>
+</div>
+<div class="readBtn">
+<button class="btnRead" onclick="document.getElementById('fullAnchor').scrollIntoView({behavior:'smooth'})">▶️ Tap to Read Full Story</button>
+<button class="btnLike" id="likeBtn" onclick="doLike()">❤️ Like</button>
+</div>
+<div class="followRow"><button class="followBtn" id="followBtn" onclick="doFollow()">+ Follow Zeenat 💚</button></div>
+<div class="box"><div class="boxTitle">📖 Short:</div><div id="short"></div></div>
+<div class="box"><div class="boxTitle">📖 Long:</div><div id="long"></div></div>
+<div class="box" id="charBox"><div class="boxTitle">👥 Characters:</div><div id="charGrid" class="charGrid"></div></div>
+<h3 id="fullAnchor">🎬 Full Story</h3>
+<div id="story"></div>
+<div class="actionRow"><button class="share" onclick="shareLink()">🔗 Share Link</button><button class="copy" onclick="copyLink()">📋 Copy Link</button></div>
+<a class="tiktokBtn" href="https://www.tiktok.com/@nextel96" target="_blank">🔥 Watch AI Video on TikTok @nextel96<br><small>https://zeenatflixgh-art.github.io</small></a>
+<div class="commentBox"><h3 style="margin:0 0 8px">💬 Comments</h3><input id="commentInput" placeholder="Write a comment..." onkeydown="if(event.key==='Enter')addComment()"><div id="commentList"></div><button style="margin-top:8px;width:100%;padding:10px;border-radius:10px;border:none;background:#ff0055;color:#fff;font-weight:800" onclick="addComment()">Post Comment</button></div>
+<script>
+let m=JSON.parse(localStorage.getItem('zeenat_play')||'{}');
+if(!m.t &&!m.title){m={t:"THE MARKET GIRL",img:"THE-MARKET-GIRL.jpg",desc:"Kejetia market girl rise"};}
+let id=(m.t||m.title||'story').replace(/\s/g,'_');
+let db=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}');
+let custom=db[m.t||m.title]||m;
+let viewsKey='views_'+id, likesKey='likes_'+id, likedKey='liked_'+id, commentsKey='comments_'+id, followersKey='followers_'+id, followedKey='followed_'+id;
+function getNum(k,d=0){return parseInt(localStorage.getItem(k)||d);}
+function init(){
+document.getElementById('poster').src=custom.img||m.img||'';
+document.getElementById('title').innerText=custom.t||m.t||m.title||'';
+document.getElementById('short').innerText=custom.short||m.desc||'🚀 No story yet - Will post them soon!';
+document.getElementById('long').innerText=custom.long||m.desc||'🚀 No story yet - Will post them soon! Follow @nextel96 💚';
+let v=getNum(viewsKey,0)+1; localStorage.setItem(viewsKey,v); document.getElementById('views').innerText='👁️ '+v+' views';
+let l=getNum(likesKey,0); document.getElementById('likes').innerText='❤️ '+l+' likes';
+let f=getNum(followersKey,0); document.getElementById('followers').innerText='👥 '+f+' followers';
+if(localStorage.getItem(likedKey))document.getElementById('likeBtn').innerText='💖 Liked';
+if(localStorage.getItem(followedKey)){let b=document.getElementById('followBtn'); b.innerText='✅ Following Zeenat 💚'; b.classList.add('following');}
+let chars=custom.characters||[];
+let charBox=document.getElementById('charBox');
+if(chars.length>0){document.getElementById('charGrid').innerHTML=chars.map(c=>`<div class="charCard"><b>👤 ${c.name}</b><span>${c.role||'Character'}</span></div>`).join(''); charBox.style.display='block';}
+else {if(custom.full && custom.full.length>50){charBox.style.display='none';} else {document.getElementById('charGrid').innerHTML=`<p style="color:#888;text-align:center">🚀 No characters yet<br>Will post them soon! Follow @nextel96</p>`;}}
+let fullText=custom.full||`🚀 No story yet - Will post them soon!
+
+This story "${m.t||m.title}" is coming soon.
+
+Follow TikTok @nextel96 for updates 💚
+Full stories: https://zeenatflixgh-art.github.io`;
+let html=fullText.split('\n').filter(x=>x.trim()).map(line=>{let idx=line.indexOf(':'); if(idx>0 && idx<35){let name=line.substring(0,idx).trim(); let text=line.substring(idx+1).trim(); return `<div class="storyLine"><div class="charName">${name}:</div><div>${text}</div></div>`;} else {return `<div class="storyLine"><div>${line}</div></div>`;}}).join('');
+document.getElementById('story').innerHTML=html; renderComments();
+}
+function doLike(){if(localStorage.getItem(likedKey))return; let l=getNum(likesKey,0)+1; localStorage.setItem(likesKey,l); localStorage.setItem(likedKey,'1'); document.getElementById('likes').innerText='❤️ '+l+' likes'; document.getElementById('likeBtn').innerText='💖 Liked';}
+function doFollow(){let btn=document.getElementById('followBtn'); if(localStorage.getItem(followedKey)){let f=Math.max(0,getNum(followersKey,1)-1); localStorage.setItem(followersKey,f); localStorage.removeItem(followedKey); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='+ Follow Zeenat 💚'; btn.classList.remove('following');} else {let f=getNum(followersKey,0)+1; localStorage.setItem(followersKey,f); localStorage.setItem(followedKey,'1'); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='✅ Following Zeenat 💚'; btn.classList.add('following');}}
+function shareLink(){let url='https://zeenatflixgh-art.github.io'; if(navigator.share){navigator.share({title:custom.t||m.t, text:custom.short||'', url:url});} else {copyLink();}}
+function copyLink(){navigator.clipboard.writeText('https://zeenatflixgh-art.github.io'); alert('Link Copied! https://zeenatflixgh-art.github.io');}
+function addComment(){let inp=document.getElementById('commentInput'); if(!inp.value.trim())return; let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); arr.push({text:inp.value, time:new Date().toLocaleString()}); localStorage.setItem(commentsKey,JSON.stringify(arr)); inp.value=''; renderComments();}
+function renderComments(){let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); document.getElementById('comCount').innerText='💬 '+arr.length+' comments'; document.getElementById('commentList').innerHTML=arr.map(c=>`<div class="cItem">👤 ${c.text}<br><small style="color:#888">${c.time}</small></div>`).join('')||'<p style="color:#666;font-size:12px">No comments yet. Be first!</p>';}
+init();
+</script>
+</body>
+</html>
