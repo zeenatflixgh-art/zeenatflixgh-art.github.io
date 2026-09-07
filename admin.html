@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEENATFLIX CEO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#070707;color:#fff;font-family:Arial,sans-serif}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#0e0e0e;border-bottom:1px solid #1f1f1f;position:sticky;top:0}
+.logo{color:#ff0055;font-weight:900}
+.btn{border:1px solid #2a2a2a;background:#151515;color:#aaa;padding:8px 14px;border-radius:999px;font-size:13px}
+.btn-pink{background:#ff0055;color:#fff;border-color:#ff0055;font-weight:800}
+.card{margin:14px;background:#101010;border:1px solid #1e1e1e;border-radius:18px;padding:14px}
+.bigPink{background:#ff0055;color:#fff;border-radius:18px;padding:18px;text-align:center;font-weight:900;font-size:15px}
+.smallDark{background:#1c1c1c;color:#777;border-radius:18px;padding:12px;text-align:center;font-weight:700;font-size:13px;border:1px solid #262626}
+label{color:#a3a3a3;font-size:13px;margin:14px 0 6px 4px;display:block}
+input,textarea,select{width:100%;background:#171717;border:1px solid #2a2a2a;color:#fff;padding:14px 16px;border-radius:14px;outline:none}
+.preview{border:1px dashed #333;border-radius:16px;min-height:120px;display:flex;align-items:center;justify-content:center;color:#555;margin:12px 0;background:#111}
+.grid2{display:grid;grid-template-columns:1.3fr.7fr;gap:12px}
+.pill-orange{color:#ffb02e;font-weight:800;font-size:12px;margin-top:18px}
+.btnSave{width:100%;background:#ff0055;color:#fff;border:none;padding:16px;border-radius:16px;font-weight:900;font-size:15px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="header">
+<div class="logo">👑 ZEENATFLIX CEO</div>
+<div style="display:flex;gap:6px">
+<button class="btn" onclick="location.href='index.html'">🏠 Home</button>
+<button class="btn" onclick="location.href='world.html'">🌍 World</button>
+<button class="btn" style="border-color:#ff0055;color:#fff" onclick="logout()">🔓 Logout</button>
+</div>
+</div>
+
+<!-- LOGIN - HIDDEN PASSWORD -->
+<div id="loginBox" style="max-width:420px;margin:80px auto;padding:20px;text-align:center">
+<h2 style="color:#ff0055">CEO Login</h2>
+<input type="password" id="ceoPass" placeholder="Enter CEO Password" autocomplete="new-password" style="text-align:center">
+<button class="btn-pink" style="width:100%;padding:14px;border-radius:14px;margin-top:12px" onclick="unlock()">🔓 Unlock</button>
+<p style="color:#555;font-size:12px">Password hidden as ••••</p>
+</div>
+
+<div id="adminBox" style="display:none;max-width:760px;margin:0 auto;padding-bottom:90px">
+<div class="card">
+<div class="grid2">
+<div class="bigPink">📁 OLD 19 Posters - Add Story</div>
+<div class="smallDark">📱<br>NEW<br>Poster<br>-<br>TikTok<br>Gallery</div>
+</div>
+
+<label>📝 Title</label>
+<input id="title" placeholder="Ananse and the Village That Never Slept">
+<label>📄 Short Description (Home page)</label>
+<input id="shortDesc" placeholder="When spider spins, no one sleeps...">
+<label>📖 Long Description (World + SEO)</label>
+<textarea id="longDesc" rows="3" placeholder="Ashanti Region, near Kumasi..."></textarea>
+<label>🎬 Story - CHARACTER: dialogue</label>
+<textarea id="story" rows="9" placeholder="NARRATOR: Long ago...
+OLD CHIEF: My people, no one can sleep!
+ANANSE: I am Ananse spider man!"></textarea>
+
+<div class="pill-orange">📁 UPDATE OLD 19 POSTERS</div>
+<select id="oldSelect"></select>
+<div id="oldPreview" class="preview">📁 Old poster preview</div>
+
+<label>🖼️ TikTok Poster Image (for NEW)</label>
+<input type="file" id="imgFile" accept="image/*">
+<div id="newPreview" class="preview" style="display:none"><img id="prevImg" style="max-width:100%;border-radius:12px"></div>
+
+<select id="lang"><option>🇬🇭 Ghana English</option><option>Twi</option><option>English</option></select>
+
+<button class="btnSave" onclick="publishNew()">📤 POST TO HOME + WORLD (NEW Poster)</button>
+<button class="btnSave" style="background:#1e1e1e;border:1px solid #333;color:#ff9bb8" onclick="updateOld()">📦 UPDATE OLD POSTER WITH STORY</button>
+<div id="status" style="margin-top:14px;color:#0f0;font-size:13px;text-align:center"></div>
+</div>
+</div>
+
+<script>
+const PASS='Papaja6869$$';
+function unlock(){if(document.getElementById('ceoPass').value===PASS){localStorage.setItem('zeenat_ceo','1');showAdmin();}else alert('Wrong password!');}
+function showAdmin(){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';loadOldSelect();}
+function logout(){localStorage.removeItem('zeenat_ceo');location.reload();}
+if(localStorage.getItem('zeenat_ceo')==='1')showAdmin();
+let baseMovies=["Ananse & the Pot of Wisdom","The Talking Drum","Kente & the Lost Princess","Mami Wata River","The Village That Never Slept","Akwaaba Ghost","Gold Coast Warrior","Market Day Curse","The Twin Drummers","Abosom Forest","Chief & the Clever Child","Moonlight Tales","TikTok Juju","Ghana Jollof War","Accra to Kumasi","The Cursed Calabash","Auntie Mansa's Shop","Okomfo Anokye Sword","Black Stars Dream"];
+function loadOldSelect(){const sel=document.getElementById('oldSelect');sel.innerHTML='<option value="">-- Choose OLD poster --</option>';baseMovies.forEach((t,i)=>{let o=document.createElement('option');o.value=i;o.textContent=(i+1)+'. '+t;sel.appendChild(o);});}
+let imgData='';document.getElementById('imgFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{imgData=r.result;document.getElementById('prevImg').src=imgData;document.getElementById('newPreview').style.display='flex';};r.readAsDataURL(f);});
+function getForm(){return{title:document.getElementById('title').value||'Ananse and the Village That Never Slept',shortDesc:document.getElementById('shortDesc').value||'When spider spins, no one sleeps.',longDesc:document.getElementById('longDesc').value||'Ashanti Region story',story:document.getElementById('story').value||'NARRATOR: Long ago...',img:imgData||'https://picsum.photos/400/600?random='+Math.floor(Math.random()*100),lang:document.getElementById('lang').value,date:new Date().toISOString()}}
+function publishNew(){const data=getForm();let all=JSON.parse(localStorage.getItem('zeenatflix_movies')||'[]');all.unshift({...data,id:Date.now(),type:'new'});localStorage.setItem('zeenatflix_movies',JSON.stringify(all));document.getElementById('status').innerHTML='✅ POSTED! Home + World now show: <b>'+data.title+'</b>';alert('Posted to HOME + WORLD CEO!');}
+function updateOld(){const idx=document.getElementById('oldSelect').value;if(idx===''){alert('Choose OLD poster!');return;}const data=getForm();let upd=JSON.parse(localStorage.getItem('zeenatflix_old_updates')||'{}');upd[idx]=data;localStorage.setItem('zeenatflix_old_updates',JSON.stringify(upd));document.getElementById('status').innerHTML='✅ OLD Poster #'+(parseInt(idx)+1)+' updated!';alert('OLD poster updated!');}
+</script>
+</body>
+</html>
