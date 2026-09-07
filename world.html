@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD PEOPLE - ZEENATFLIX</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
+.top{background:linear-gradient(90deg,#00c853,#0091ea);margin:8px;padding:16px;border-radius:18px;text-align:center}
+.top h1{margin:0;font-size:22px;font-weight:900}.nav{margin-top:8px;display:flex;gap:8px;justify-content:center}
+.nav a{color:#fff;text-decoration:none;background:#000;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
+.search{margin:12px;background:#1a1a1a;border-radius:30px;padding:12px 16px;display:flex;gap:8px;border:1px solid #222}
+.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#151515;border-radius:12px;overflow:hidden;border:1px solid #222;position:relative}
+.card img{width:100%;height:240px;object-fit:cover}.lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(0,0,0,0.7);border:2px solid #ffcc00;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.info{padding:8px}.title{font-weight:800;font-size:12px}.sub{font-size:11px;color:#aaa;height:32px;overflow:hidden}.meta{font-size:11px;color:#888;margin-top:4px;display:flex;gap:6px}
+.tiktokZone{margin:16px;background:linear-gradient(135deg,#000,#1a1a1a);border:2px solid #00c853;border-radius:16px;padding:18px;text-align:center}
+</style>
+</head>
+<body>
+<div class="top"><h1>🌍 WORLD PEOPLE</h1><p>Global Stories - Tap to Read!</p><div class="nav"><a href="index.html">← Back Home</a><a href="admin.html">👑 CEO Admin</a></div></div>
+<div class="search">🔍 <input id="sW" placeholder="Search World..." oninput="filterW()"></div>
+<div id="gridW" class="grid"></div>
+<div class="tiktokZone">
+<h2 style="margin:0;color:#00e676">🌍 World TikTok - @nextel96</h2>
+<p style="color:#fff;font-weight:800">🌹 Zeenat 💚 sonkowa</p>
+<p style="color:#aaa;font-size:13px">AI Videos for World People Coming Very Soon!</p>
+<a href="https://www.tiktok.com/@nextel96" target="_blank" style="display:inline-block;background:linear-gradient(90deg,#00c853,#0091ea);color:#fff;padding:12px 22px;border-radius:25px;text-decoration:none;font-weight:900;margin-top:10px">🌍 Follow @nextel96 World</a>
+</div>
+<script>
+const MOVIES=[
+{t:"SECRETS OF THE LETTER",img:"SECRETS-OF-THE-LETTER.jpg",views:"4.2M",likes:"210K",comments:"12K",desc:"World Exclusive - Letter after 20 years"},
+{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",views:"1.8M",likes:"87K",comments:"4.3K",desc:"The Vanishing of Maame Serwaa"},
+{t:"THE FOOD SELLER",img:"THE-FOOD-SELLER.jpg",views:"2.2M",likes:"95K",comments:"5K",desc:"Monica's Secret Gallon"},
+{t:"AMARA",img:"AMARA.jpg",views:"3.5M",likes:"150K",comments:"9K",desc:"A girl who wanted Accra"},
+{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",views:"1.9M",likes:"80K",comments:"3.2K",desc:"Secret in Kumasi Library"}
+];
+function renderW(list){const g=document.getElementById('gridW'); g.innerHTML=''; list.forEach(m=>{let d=document.createElement('div'); d.className='card'; d.innerHTML=`<img src="${m.img}" onerror="this.src='https://via.placeholder.com/400x600?text=${encodeURIComponent(m.t)}'"><div class="lock">🔒</div><div class="info"><div class="title">${m.t}</div><div class="sub">${m.desc}</div><div class="meta"><span>👁️ ${m.views}</span><span>❤️ ${m.likes}</span><span>💬 ${m.comments}</span><span>• 🌍 World</span></div></div>`; g.appendChild(d);});}
+function filterW(){let q=document.getElementById('sW').value.toLowerCase(); renderW(MOVIES.filter(m=>m.t.toLowerCase().includes(q)));}
+renderW(MOVIES);
+</script>
+</body>
+</html>
