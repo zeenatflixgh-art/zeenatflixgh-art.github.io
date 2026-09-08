@@ -65,27 +65,22 @@ const MOVIES=[
 {t:"DEATH OF NO RETURN",img:"DEATH-OF-NO-RETURN.jpg",views:"2.2M",likes:"90K",comments:"4.5K",desc:"Death that came twice"}
 ];
 let remoteDB={};
-function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
-function getDB(){let local=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}');return {...local,...remoteDB};}
 function hasFullStory(title){
  let db=getDB();
  let key=title.toLowerCase().replace(/\s+/g,'-');
  let story=db[title]||db[key]||db[Object.keys(db).find(k=>k.toLowerCase()===title.toLowerCase())];
  if(!story) return false;
- // IMMEDIATE UNLOCK CHECK - CEO FIX
- if(story.free===true||story.unlocked===true||story.status==="FREE") return true;
- return story.full && story.full.length>50;
+ return true;
 }
 function render(list){
  const g=document.getElementById('grid');g.innerHTML='';let db=getDB();
  list.forEach(m=>{
-  let key=m.t.toLowerCase().replace(/\s+/g,'-');
-  let posted=db[m.t]||db[key]||null;
-  // CHECK FREE FLAG
-  let isFree=posted && (posted.free===true||posted.unlocked===true||posted.status==="FREE");
-  let isPosted=hasFullStory(m.t);
-  let lockHTML=isPosted?`<div class="newBadge">${isFree?'🔓 FREE':'✅ NEW'}</div>`:`<div class="lock">🔒</div>`;
-  let border=isPosted?'2px solid #00c853':'1px solid #222';
+    let key=m.t.toLowerCase().replace(/\s+/g,'-');
+  let posted=db[m.t]||db[key]||db[Object.keys(db).find(k=>k.toLowerCase()===m.t.toLowerCase())]||null;
+  // CEO FIX: ALL posted = FREE - NO LOCK EVER
+  let isPosted=!!posted;
+  let isFree=true;
+  let lockHTML=isPosted?`<div class="newBadge">🔓 FREE</div>`:`<div class="lock">🔒</div>`;
   let shortText=posted?.short||m.desc;
   let d=document.createElement('div');d.className='card';d.style.border=border;
   d.innerHTML=`<img src="${m.img}" onerror="this.src='https://via.placeholder.com/400x600/111/fff?text=${encodeURIComponent(m.t)}'">${lockHTML}<div class="info"><div class="title">${m.t}</div><div class="sub">${shortText}</div><div class="meta"><span>👁️ ${m.views}</span><span>❤️ ${m.likes}</span></div></div>`;
