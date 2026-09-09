@@ -48,7 +48,17 @@ const MOVIES=[
 {t:"THE MARKET GIRL",img:"THE-MARKET-GIRL.jpg",views:"2.4M",likes:"100K",comments:"5.2K",desc:"Kejetia market girl rise"},
 {t:"MY STEPMOTHERS DAUGHTER",img:"MY-STEPMOTHERS-DAUGHTER.jpg",views:"3.0M",likes:"140K",comments:"8K",desc:"Wicked stepmother story"},
 {t:"FOREST OF NO RETURN",img:"FOREST-OF-NO-RETURN.jpg",views:"1.9M",likes:"82K",comments:"3.8K",desc:"Forest where people vanish"},
-{t:"DEATH OF NO RETURN",img:"DEATH-OF-NO-RETURN.jpg",views:"2.2M",likes:"90K",comments:"4.5K",desc:"Death that came twice"}
+{t:"DEATH OF NO RETURN",img:"DEATH-OF-NO-RETURN.jpg",views:"2.2M",likes:"90K",comments:"4.5K",desc:"Death that came twice"},
+{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",views:"3.8M",likes:"180K",comments:"10K",desc:"The abandoned huts - Hidden village secret"},
+{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",views:"2.8M",likes:"130K",comments:"7K",desc:"Secret hidden in the library"},
+{t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",views:"3.2M",likes:"145K",comments:"8.5K",desc:"The bride of the river god"},
+{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",views:"2.6M",likes:"115K",comments:"6.2K",desc:"The white man in the village"},
+{t:"THE TWINS",img:"THE-TWINS.jpg",views:"2.9M",likes:"135K",comments:"7.5K",desc:"Twins with same destiny"},
+{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",views:"2.3M",likes:"105K",comments:"5.8K",desc:"Hunter who gave all away"},
+{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",views:"3.0M",likes:"125K",comments:"7K",desc:"Headmaster's dark secret"},
+{t:"FORGOTTEN PROMISE",img:"FORGOTTEN-PROMISE.jpg",views:"2.7M",likes:"120K",comments:"6.5K",desc:"Promise made 20 years ago"},
+{t:"SHATTERED VOW",img:"SHATTERED-VOW.jpg",views:"2.5M",likes:"110K",comments:"6K",desc:"Vow broken by love"},
+{t:"ANANSE AND THE VILLAGE THAT NEVER SLEPT",img:"ANANSE.jpg",views:"4.5M",likes:"250K",comments:"15K",desc:"Ananse and the village that never slept - FREE"}
 ];
 function showToastW(m){let t=document.getElementById('toastW'); t.innerText=m; t.style.display='block'; setTimeout(()=>t.style.display='none',3000);}
 function hasFullStory(title){let db=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}'); return db[title] && db[title].full && db[title].full.length>50;}
