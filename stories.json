@@ -8,9 +8,20 @@
     "status": "FREE",
     "short": "Amara, 19-year-old illiterate girl, suffers under wicked stepmother. When CEO Bright teaches her to read, jealous family tries to marry her to 62-year-old man. But she becomes best graduating student.",
     "long": "After losing mother at 8, Amara removed from school by wicked stepmother. At 19 meets Bright, rich CEO who teaches her A-B-C. Stepmother tries to marry her to old man for 2 goats. Amara leaves, studies 3 years, becomes BEST GRADUATING STUDENT and forgives family.",
-    "characters": [{"name": "AMARA"}, {"name": "MAMA ESTHER"}, {"name": "BRIGHT"}],
+    "characters": [
+      {
+        "name": "AMARA"
+      },
+      {
+        "name": "MAMA ESTHER"
+      },
+      {
+        "name": "BRIGHT"
+      }
+    ],
     "full": "PART 1-4 FULL STORY AS YOU WROTE - Amara's mother dies... [keep your full story here from admin] Forgiveness is final victory.",
-    "tags": "", "lang": "English"
+    "tags": "",
+    "lang": "English"
   },
   "THE ABANDONED HUTS": {
     "t": "THE ABANDONED HUTS",
@@ -20,7 +31,17 @@
     "date": "2026-09-08T13:44:07.828Z",
     "short": "City boy Emmanuel returns to Amedzofe, Ghana's highest village, finds 3 abandoned huts. Truth of Maame Serwaa will make you cry.",
     "long": "Amedzofe Village, Volta Region, 677 meters. Emmanuel returns after 15 years. 3 abandoned huts no one enters. Papa Kwasi 87 tells story of Maame Serwaa who vanished 40 years ago. Real reason will break your heart.",
-    "characters": [{"name": "EMMANUEL"}, {"name": "MAAME SERWAA"}, {"name": "PAPA KWASI"}],
+    "characters": [
+      {
+        "name": "EMMANUEL"
+      },
+      {
+        "name": "MAAME SERWAA"
+      },
+      {
+        "name": "PAPA KWASI"
+      }
+    ],
     "full": "NARRATOR: At edge of Amedzofe village... [your full Amedzofe story] Some secrets vanish in mist, but kindness never does. END.",
     "lang": "Ghana English"
   },
@@ -42,24 +63,83 @@
     "date": "2026-09-11T11:32:30.101Z",
     "short": "19-year-old chosen as bride for River God to save village from drought. But she loves a hunter.",
     "long": "In Umunzu near River Niger, no rain 7 months. Elders say river demands bride. 19-year-old Adaeze chosen. She loves Emeka hunter. Must marry River God.",
-    "characters": [{"name": "ADAEZE"}, {"name": "EMEKA"}, {"name": "RIVER GOD"}],
+    "characters": [
+      {
+        "name": "ADAEZE"
+      },
+      {
+        "name": "EMEKA"
+      },
+      {
+        "name": "RIVER GOD"
+      }
+    ],
     "full": "YOUR PART 1 FULL STORY - paste your real Part 1 here",
     "lang": "Ghana English"
   },
   "THE RIVER BRIDE PART 2 - THE LAST NIGHT": {
     "t": "THE RIVER BRIDE PART 2 - THE LAST NIGHT",
-    "img": "RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",
+    "img": "THE_RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",
     "free": true,
     "unlocked": true,
     "status": "FREE",
     "immediateUnlock": true,
-    "date": "2026-09-11T12:30:00.101Z",
-    "short": "Ama returned to river, goddess demands price. One last night to decide - love or sacrifice.",
-    "long": "After escaping river god, Ama thought free. Night before wedding river rises. Goddess: You belong to us. Kofi eyes turn blue. Ama must return for LAST NIGHT to break curse.",
-    "full": "CHAPTER 1: THE RETURN\n\nAma had not been to river in 3 months since escape. Preparing to marry Kofi. Night before wedding dreamt water. AMA... COME HOME...\n\nRaining in dry season. Elders said river never rose like this.\n\nCHAPTER 2: KOFI CHANGES\n\nKofi came, skin cold, eyes blue. We must go to river today in voice not his. Maame Esi: curse not left you. Goddess wants payment.\n\nCHAPTER 3: LAST NIGHT\n\nAma walked alone midnight in white dress. Water parted. Goddess hair made of water. You took what was mine. Your beauty promised when grandmother prayed.\n\nTake me leave Kofi! Ama cried.\n\nOne last night. If love for Kofi true you return. If not stay forever.\n\nUnderwater palace gold shells. Spirits offered eternal beauty wealth no pain. She thought of Kofi.\n\nCHAPTER 4: TRUE LOVE WINS\n\nGoddess: Will you stay?\n\nAma: I choose love that suffers. Human love.\n\nKofi jumped into river, love broke possession stronger than magic. River roared, goddess let go.\n\nGo. Debt paid. But whispered: Your first daughter will be mine.\n\nTO BE CONTINUED PART 3\n\nFollow @nextel96!",
-    "characters": [{"name": "Ama"}, {"name": "Kofi"}, {"name": "River Goddess"}, {"name": "Maame Esi"}],
-    "tags": "#riverbridepart2",
-    "lang": "Ghana English"
+    "date": "2026-09-11T18:10:51.066Z",
+    "short": "One year later, Adaeze risks everything to be human wife for one night. But Mamala wants to kill her, Amara wants to steal Emeka, and little Zara is dying.",
+    "long": "Anniversary night Adaeze became River Bride. River God allows one night on land but warns she will die as human. Inside river, jealous first wife MAMALA plots to drown her boyfriend and kill her. In Umunzu village, Emeka waits 2 years, Okonkwo advises to forget, Amara secretly loves Emeka. Midnight Adaeze appears shining, but little Zara 7 years burning with fever. Adaeze heals her breaking river law. Mamala attacks with snakes in hair, mother spirit NGOZI appears. River God forgives and gives one beautiful night as husband and wife.",
+    "characters": [
+      {
+        "name": "ADAEZE",
+        "role": "Character"
+      },
+      {
+        "name": "RIVER GOD",
+        "role": "Character"
+      },
+      {
+        "name": "MAMALA",
+        "role": "Character"
+      },
+      {
+        "name": "EMEKA",
+        "role": "Character"
+      },
+      {
+        "name": "OKONKWO",
+        "role": "Character"
+      },
+      {
+        "name": "AMARA",
+        "role": "Character"
+      },
+      {
+        "name": "LITTLE ZARA",
+        "role": "Character"
+      },
+      {
+        "name": "NGOZI",
+        "role": "Character"
+      },
+      {
+        "name": "NARRATOR",
+        "role": "Character"
+      },
+      {
+        "name": "IGWE OKORO",
+        "role": "Character"
+      },
+      {
+        "name": "PRIESTESS NNEKA",
+        "role": "Character"
+      },
+      {
+        "name": "OBINNA",
+        "role": "Character"
+      }
+    ],
+    "full": "*SYNOPSIS:* One year later, Adaeze wants to risk everything to be a human wife for one night. But the River God's first wife, Mamala, wants to kill her, Amara wants to steal Emeka, and little Zara is dying.\n\n*FULL STORY:*\n\n*NARRATOR:* It was the anniversary night. The night Adaeze became the River Bride. Inside the river palace, Adaeze sat on her throne, crying. Her crown was heavy.\n\n*RIVER GOD:* Adaeze, you are crying again. Tonight you can go to land. But I warned you. If you go to see that boy, I will not allow you to come back. You will die as a human.\n\n*ADAEZE:* Then let me die. I don't want to be a goddess forever. I want to be a wife for one night.\n\n*NARRATOR:* Inside the deeper part of the river, someone was listening. It was MAMALA, the first wife of the River God. She was very beautiful, but her heart was full of jealousy.\n\n*MAMALA:* (Angry) So this small human girl wants to leave our world? Good. Tonight, I will make sure she never returns. I will drown her boyfriend and kill her.\n\n*NARRATOR:* On land, in Umunzu village, Emeka was waiting by the river. He had not married for two years. His best friend, OKONKWO, came to meet him.\n\n*OKONKWO:* Emeka, my brother, you are here again? It is midnight. This girl is now a goddess. Forget her.\n\n*EMEKA:* I can never forget her, Okonkwo. She said she would come every year. I will wait.\n\n*OKONKWO:* And what about AMARA? That girl loves you. She brings you food every day. She is a good girl.\n\n*EMEKA:* My heart belongs to Adaeze only.\n\n*NARRATOR:* In another part of the village, AMARA was watching them from behind a tree. She was crying.\n\n*AMARA:* Emeka, I have loved you for three years. Why can't you see me? Tonight, I will follow you to the river. I will make sure Adaeze leaves you alone.\n\n*NARRATOR:* At midnight, the water began to spin. Adaeze came out, wearing her white wrapper, shining like moonlight. She was still 19.\n\n*EMEKA:* Adaeze! You came!\n\n*ADAEZE:* Emeka!\n\n*NARRATOR:* They hugged. But before they could talk, they heard a small voice crying. It was LITTLE ZARA, the 7-year-old girl, coughing near the river bank.\n\n*ADAEZE:* Zara? What are you doing here at night? You are burning with fever!\n\n*LITTLE ZARA:* Mama Adaeze, I am sick. My mother said only the river goddess can save me. Please help me.\n\n*ADAEZE:* Oh no. River God said if I touch any human tonight, I will lose my powers.\n\n*EMEKA:* We must save her, Adaeze.\n\n*ADAEZE:* (Touches Zara's head and prays) River, please heal this child.\n\n*NARRATOR:* Immediately, Zara's fever disappeared. But inside the river, MAMALA felt it.\n\n*MAMALA:* She used her power on land! Now she is weak! This is my chance.\n\n*NARRATOR:* Suddenly, the river became rough. A big wave came out. MAMALA appeared, with snakes in her hair.\n\n*MAMALA:* Adaeze! You are a selfish bride! You healed a human child without permission! You have broken the river law! Now you must die!\n\n*ADAEZE:* Who are you?\n\n*MAMALA:* I am Mamala! The first wife! The queen before you came! Tonight, I will take your life and take your boyfriend!\n\n*EMEKA:* Leave her alone!\n\n*OKONKWO:* (Running with his cutlass) Emeka! What is happening?\n\n*NARRATOR:* Mamala raised her hand and the water held Emeka and Okonkwo, so they could not move.\n\n*MAMALA:* You cannot fight me, humans!\n\n*NARRATOR:* Adaeze was afraid and weak. She was about to give up. Then, a soft light appeared on the water. It was a woman in white. It was NGOZI, Adaeze's mother who died many years ago.\n\n*NGOZI:* Adaeze, my daughter.\n\n*ADAEZE:* Mama? Mama! Is that you?\n\n*NGOZI:* Yes, my child. I have been watching you from the world of spirits. You have a pure heart. You saved Zara. That is true love, not selfish love. The river loves a pure heart.\n\n*MAMALA:* Ngozi! You cannot save her! She broke the law!\n\n*NGOZI:* No, Mamala. She followed the highest law — love. River God! Come and see what your bride did!\n\n*NARRATOR:* The RIVER GOD appeared, tall and shining. He saw Zara, now healed and smiling. He saw Emeka who still waited after two years. He saw Adaeze who risked her throne to save a child.\n\n*RIVER GOD:* Mamala, leave them. Adaeze has shown me what human love means. It is not selfish. It gives.\n\n*MAMALA:* But you promised me she would die if she went to land!\n\n*RIVER GOD:* I was jealous. I was wrong. Adaeze, you saved a child. You did not use your night for yourself. For that, I will forgive you.\n\n*ADAEZE:* Thank you, my lord.\n\n*RIVER GOD:* Tonight, I give you a new gift. You can be human for one full night. No curse. You and Emeka can be husband and wife till morning. And little Zara will never be sick again.\n\n*LITTLE ZARA:* Thank you, Mama Adaeze!\n\n*NARRATOR:* Mamala was angry and disappeared into the deep water forever.\n\n*NGOZI:* My daughter, I am proud of you. Be happy tonight. (Her spirit disappears)\n\n*NARRATOR:* Amara, who was watching from the bush, saw everything. She started crying and left quietly. She understood that Emeka and Adaeze's love was true.\n\n*AMARA:* I will find my own love. Let them be happy.\n\n*NARRATOR:* That night, Adaeze and Emeka finally became husband and wife by the river side, under the moon. Okonkwo played music and Zara danced.\n\nIt was their last night as humans, but it was the most beautiful night in Umunzu.\n\nBut in the morning, Adaeze had to return to the river...\n\n*TO BE CONTINUED IN RIVER BRIDE PART 3...*\n",
+    "tags": "#riverbridepart2 #thelastnight #nigerianfolktale #zeenatflixgh #fyp #ghanafolktale #nollywood #motherspirit",
+    "lang": "🇬🇭 Ghana English"
   },
   "THE RIVER BRIDE PART 3 - THE FINAL END": {
     "t": "THE RIVER BRIDE PART 3 - THE FINAL END",
@@ -72,7 +152,20 @@
     "short": "Goddess wants Ama's first daughter. Final battle to end 100-year curse.",
     "long": "Promise: Your first daughter will be mine. Ama pregnant, village flooding. To save child must discover origin - grandmother pact 100 years ago. FINAL END requires ultimate sacrifice.",
     "full": "CHAPTER 1: PROMISE\n\nOne year after Last Night, Ama happy married 7 months pregnant. Every night baby crying from river.\n\nMaame Esi: Truth. When I could not have children I went to goddess 30 years ago promised: Give me daughter and her first daughter serve you. You were that daughter.\n\nMum you sold my child?!\n\nCHAPTER 2: FLOOD\n\nRiver overflowed farms, children sick blue marks. Priest: Goddess angry waited 100 years started great-grandmother 1924!\n\nAma found book 100 years river brides trapped.\n\nCHAPTER 3: FINAL BATTLE\n\nPregnant Ama entered river as warrior with grandmother calabash and Kofi token. Saw ancestors trapped.\n\nGoddess with water baby: Give me daughter souls free queen here.\n\nNo more daughters for river! I break pact with my blood! Cut hand blood fell - mother blood willing die strongest Ghana magic. Palace cracked.\n\nCHAPTER 4: FINAL END\n\nGoddess screamed 100-year spell broke. Brides released as white doves to heaven.\n\nYou broke it whispered turning old woman. Love broke what greed started. I was woman betrayed cursed love. Your love healed me.\n\nDisappeared at peace. Flood stopped. That night gave birth to girl free child named AFIA - Born Friday Born Free.\n\nRiver now just river. No more brides. Curse ended.\n\nTHE END OF RIVER BRIDE TRILOGY.\n\nThank you Zeenatflix! Follow @nextel96! Type AMEN for Afia!",
-    "characters": [{"name": "Ama"}, {"name": "Kofi"}, {"name": "Afia"}, {"name": "River Goddess"}],
+    "characters": [
+      {
+        "name": "Ama"
+      },
+      {
+        "name": "Kofi"
+      },
+      {
+        "name": "Afia"
+      },
+      {
+        "name": "River Goddess"
+      }
+    ],
     "tags": "#riverbridepart3",
     "lang": "Ghana English"
   }
