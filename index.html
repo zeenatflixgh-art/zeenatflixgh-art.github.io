@@ -30,12 +30,8 @@
 <h1>🎬 ZEENATFLIX</h1>
 <p>21 Ghana Movies - Tap to Read! 🇬🇭</p>
 <div class="nav">
-<a href="/">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="privacy.html">Privacy</a>
-<a href="world.html">🌍 World</a>
-<a href="admin.html" class="adminHidden">👑 CEO Admin</a>
+<div class="nav"><a href="world.html">🌍 World People</a><a href="admin.html" class="adminHidden">👑 CEO Admin</a></div>
+ 
 </div>
 </div>
 <div class="search">🔍 <input id="s" placeholder="Search Ghana..." oninput="filterMovies()"></div>
@@ -131,5 +127,10 @@ if(localStorage.getItem('zeenat_admin')==='yes'){
  document.querySelectorAll('.adminHidden').forEach(e=>e.style.display='inline-block');
 }
 </script>
+ <div style="text-align:center;padding:20px;border-top:1px solid #222;margin-top:20px">
+<a href="about.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">About</a>
+<a href="contact.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">Contact</a>
+<a href="privacy.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">Privacy</a>
+</div>
 </body>
 </html>
