@@ -57,7 +57,7 @@ body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:12px}
 <h3 id="fullAnchor">🎬 Full Story</h3>
 <div id="story"></div>
 <div class="actionRow"><button class="share" onclick="shareLink()">🔗 Share Link</button><button class="copy" onclick="copyLink()">📋 Copy Link</button></div>
-<a class="tiktokBtn" href="https://www.tiktok.com/@zeenat69.sonkowa" target="_blank">🔥 Watch AI Video on TikTok @zeenat69.sonkowa<br><small>https://zeenatflixgh-art.github.io</small></a>
+<a class="tiktokBtn" href="https://www.tiktok.com/@zeenat69.sonkowa" target="_blank">🔥 Watch AI Video on TikTok @zeenat69.sonkowa<br><small>Follow @zeenat69.sonkowa 💚</small></a>
 <div class="commentBox"><h3 style="margin:0 0 8px">💬 Comments</h3><input id="commentInput" placeholder="Write a comment..." onkeydown="if(event.key==='Enter')addComment()"><div id="commentList"></div><button style="margin-top:8px;width:100%;padding:10px;border-radius:10px;border:none;background:#ff0055;color:#fff;font-weight:800" onclick="addComment()">Post Comment</button></div>
 <script>
 let m=JSON.parse(localStorage.getItem('zeenat_play')||'{}');
@@ -85,15 +85,14 @@ let fullText=custom.full||`🚀 No story yet - Will post them soon!
 
 This story "${m.t||m.title}" is coming soon.
 
-Follow TikTok @zeenat69.sonkowa for updates 💚
-Full stories: https://zeenatflixgh-art.github.io`;
+Follow TikTok @zeenat69.sonkowa for updates 💚`;
 let html=fullText.split('\n').filter(x=>x.trim()).map(line=>{let idx=line.indexOf(':'); if(idx>0 && idx<35){let name=line.substring(0,idx).trim(); let text=line.substring(idx+1).trim(); return `<div class="storyLine"><div class="charName">${name}:</div><div>${text}</div></div>`;} else {return `<div class="storyLine"><div>${line}</div></div>`;}}).join('');
 document.getElementById('story').innerHTML=html; renderComments();
 }
 function doLike(){if(localStorage.getItem(likedKey))return; let l=getNum(likesKey,0)+1; localStorage.setItem(likesKey,l); localStorage.setItem(likedKey,'1'); document.getElementById('likes').innerText='❤️ '+l+' likes'; document.getElementById('likeBtn').innerText='💖 Liked';}
 function doFollow(){let btn=document.getElementById('followBtn'); if(localStorage.getItem(followedKey)){let f=Math.max(0,getNum(followersKey,1)-1); localStorage.setItem(followersKey,f); localStorage.removeItem(followedKey); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='+ Follow Zeenat 💚'; btn.classList.remove('following');} else {let f=getNum(followersKey,0)+1; localStorage.setItem(followersKey,f); localStorage.setItem(followedKey,'1'); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='✅ Following Zeenat 💚'; btn.classList.add('following');}}
 function shareLink(){let url='https://zeenatflixgh-art.github.io'; if(navigator.share){navigator.share({title:custom.t||m.t, text:custom.short||'', url:url});} else {copyLink();}}
-function copyLink(){navigator.clipboard.writeText('https://zeenatflixgh-art.github.io'); alert('Link Copied! https://zeenatflixgh-art.github.io');}
+function copyLink(){navigator.clipboard.writeText('https://zeenatflixgh-art.github.io'); alert('Link Copied!');}
 function addComment(){let inp=document.getElementById('commentInput'); if(!inp.value.trim())return; let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); arr.push({text:inp.value, time:new Date().toLocaleString()}); localStorage.setItem(commentsKey,JSON.stringify(arr)); inp.value=''; renderComments();}
 function renderComments(){let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); document.getElementById('comCount').innerText='💬 '+arr.length+' comments'; document.getElementById('commentList').innerHTML=arr.map(c=>`<div class="cItem">👤 ${c.text}<br><small style="color:#888">${c.time}</small></div>`).join('')||'<p style="color:#666;font-size:12px">No comments yet. Be first!</p>';}
 init();
