@@ -66,16 +66,7 @@ const MOVIES=[
 {t:"AMARA",img:"AMARA.jpg",views:"3.5M",likes:"150K",comments:"9K",desc:"A girl who wanted Accra"},
 {t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",views:"1.9M",likes:"80K",comments:"3.2K",desc:"Secret in Kumasi Library"},
 {t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",views:"2.1M",likes:"92K",comments:"4K",desc:"Bride of River Tano"},
-{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",views:"1.5M",likes:"70K",comments:"2.8K",desc:"Obroni in Ashanti village"},
-{t:"THE TWINS",img:"THE-TWINS.jpg",views:"2.8M",likes:"130K",comments:"6.5K",desc:"Twins with one destiny"},
-{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",views:"1.7M",likes:"75K",comments:"3K",desc:"Hunter who gave everything"},
-{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",views:"1.6M",likes:"68K",comments:"2.5K",desc:"Headmaster secret 1985"},
-{t:"FORGOTTEN PROMISE",img:"FORGOTTEN-PROMISE.jpg",views:"2.0M",likes:"85K",comments:"4.1K",desc:"Promise made in 1990"},
-{t:"THE MARKET GIRL",img:"THE-MARKET-GIRL.jpg",views:"2.4M",likes:"100K",comments:"5.2K",desc:"Kejetia market girl rise"},
-{t:"MY STEPMOTHERS DAUGHTER",img:"MY-STEPMOTHERS-DAUGHTER.jpg",views:"3.0M",likes:"140K",comments:"8K",desc:"Wicked stepmother story"},
-{t:"FOREST OF NO RETURN",img:"FOREST-OF-NO-RETURN.jpg",views:"1.9M",likes:"82K",comments:"3.8K",desc:"Forest where people vanish"},
-{t:"DEATH OF NO RETURN",img:"DEATH-OF-NO-RETURN.jpg",views:"2.2M",likes:"90K",comments:"4.5K",desc:"Death that came twice"}
-];
+{t:"THE WHITE MAN",img
 let remoteDB={};
 function getDB(){try{let local=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}');return {...remoteDB,...local};}catch(e){return remoteDB;}}
 function showToast(msg){let t=document.getElementById('toast');t.innerText=msg;t.style.display='block';setTimeout(()=>{t.style.display='none';},3000);}
