@@ -4,62 +4,69 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World - ZEENATFLIX</title>
 <style>
-body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:12px}
-.topBar{background:linear-gradient(90deg,#ff0055,#ff8a00);padding:12px;border-radius:20px;display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.backBtn{background:#fff;color:#000;padding:8px 16px;border-radius:20px;font-weight:900;text-decoration:none;font-size:13px}
-.grid{display:grid;grid-template-columns:1fr;gap:12px}
-.card{background:#1a1a1a;border:1px solid #222;border-radius:12px;display:flex;gap:10px;padding:10px}
-.card img{width:90px;height:120px;object-fit:cover;border-radius:8px;background:#000}
-.card .info{flex:1}
-.card .info b{font-size:14px;display:block;margin-bottom:4px}
-.card .info p{font-size:12px;color:#aaa;margin:0;line-height:1.4}
-.search{width:100%;background:#1a1a1a;border:1px solid #222;color:#fff;padding:12px;border-radius:12px;margin-bottom:12px;outline:none}
+*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
+.top{background:linear-gradient(90deg,#ff6a00,#ff0055)!important;margin:8px;padding:16px;border-radius:18px;text-align:center}
+.top h1{margin:0;font-size:20px;font-weight:900}
+.top p{margin:4px 0 0;font-size:12px;color:#fff}
+.nav{margin-top:8px;display:flex;gap:8px;justify-content:center}
+.nav a{color:#fff;text-decoration:none;background:#000;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
+.adminHidden{display:none!important}
+.search{margin:12px;background:#1a1a1a;border-radius:30px;padding:12px 16px;display:flex;gap:8px;border:1px solid #222}
+.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
+.count{font-size:11px;color:#ff8a00;margin:0 12px 4px}
+.grid{display:grid;grid-template-columns:1fr;gap:10px;padding:10px}
+.card{background:#151515;border-radius:12px;display:flex;gap:10px;padding:10px;border:1px solid #222;cursor:pointer}
+.card img{width:90px;height:120px;object-fit:cover;border-radius:8px;background:#000;flex-shrink:0}
+.info{flex:1}
+.info b{font-size:14px;display:block;margin-bottom:4px}
+.info p{font-size:12px;color:#aaa;margin:0;line-height:1.4}
 </style>
 </head>
 <body>
-<div class="topBar"><a class="backBtn" href="index.html">← Home</a><b>🌍 WORLD - All Stories</b></div>
-<input id="search" class="search" placeholder="🔍 Search world..." oninput="doSearch()">
+<div class="top">
+<h1>🌍 WORLD - All Stories</h1>
+<p>🧕🏻Zeenat69🌹Sonkowa</p>
+<div class="nav"><a href="index.html">← Home</a><a href="admin.html" class="adminHidden">Admin</a></div>
+</div>
+<div class="search">🔍 <input id="s" placeholder="Search SNAKE..." oninput="doSearch()"></div>
+<div id="count" class="count">22 stories</div>
 <div id="grid" class="grid"></div>
 <script>
-const FALLBACK=[
-{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"THE-RIVER-BRIDE-PART-2-THE-LAST-NIGHT.jpg",short:"River bride returns",long:"Full synopsis of River Bride Part 2"},
-{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",short:"Poor waitress marries billionaire who is snake at midnight",long:"Full story of Sandra and python husband"},
-{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL-PART-1.jpg",short:"Kayayo girl story",long:"Kayayo struggles in Accra"}
+const MOVIES=[
+{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",desc:"One year later..."},
+{t:"THE RIVER BRIDE PART 3 - THE FINAL END",img:"RIVER_BRIDE_PART_3_-_THE_FINAL_END.jpg",desc:"Final end..."},
+{t:"ANANSE AND THE VILLAGE THAT NEVER SLEPT",img:"ANANSE_AND_THE_VILLAGE_THAT_NEVER_SLEPT.jpg",desc:"Ananse..."},
+{t:"THE STOLEN BABY",img:"THE-STOLEN-BABY.jpg",desc:"Mother's nightmare"},
+{t:"THE SLAVE TRADE",img:"THE-SLAVE-TRADE.jpg",desc:"Pot refused..."},
+{t:"SHATTERED VOWS",img:"SHATTERED-VOWS.jpg",desc:"Broke vow..."},
+{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",desc:"Vanishing..."},
+{t:"THE FOOD SELLER",img:"THE-FOOD-SELLER.jpg",desc:"Monica's secret"},
+{t:"AMARA",img:"AMARA.jpg",desc:"Girl wanted Accra"},
+{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",desc:"Library secret"},
+{t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",desc:"Bride of Tano"},
+{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",desc:"Obroni..."},
+{t:"THE TWINS",img:"THE-TWINS.jpg",desc:"Twins..."},
+{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",desc:"Hunter..."},
+{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",desc:"Headmaster 1985"},
+{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",desc:"Snake at midnight - money ritual"},
+{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL.jpg",desc:"Abogbloshie"},
+{t:"THE GOLDEN CALABASH PART 1",img:"THE-GOLDEN-CALABASH.jpg",desc:"River gift"},
+{t:"SAUDI WAHALA - They sold me for $4000",img:"SAUDI-WAHALA.jpg",desc:"Anambra to Saudi"},
+{t:"HE SLEPT WITH MY SISTER ON MY WEDDING DAY",img:"WEDDING-BETRAYAL.jpg",desc:"Betrayal"},
+{t:"THE HIDDEN SECRET PART 1",img:"THE-HIDDEN-SECRET.jpg",desc:"Coffin in rain"},
+{t:"THE MARKET WITCH - Kaneshie Market Witch",img:"THE-MARKET-WITCH.jpg",desc:"Tomatoes witch"}
 ];
-let ALL=[];
+let ALL=[...MOVIES];
 async function load(){
-  try{
-    let r=await fetch('stories.json?v='+Date.now());
-    if(r.ok){
-      let j=await r.json();
-      let fromJson=Object.values(j);
-      let seen=new Set();
-      ALL=[];
-      [...fromJson, ...FALLBACK].forEach(m=>{
-        let k=(m.t||m.title||'').toUpperCase();
-        if(k && !seen.has(k)){seen.add(k); ALL.push(m);}
-      });
-    }else{ALL=FALLBACK;}
-  }catch(e){ALL=FALLBACK;}
-  render(ALL);
+ try{
+   let r=await fetch('stories.json?v='+Date.now());
+   if(r.ok){let j=await r.json(); Object.keys(j).forEach(k=>{let s=j[k]; let idx=ALL.findIndex(m=>m.t.toUpperCase()===k.toUpperCase()); if(idx>=0){ALL[idx].img=s.img||ALL[idx].img; ALL[idx].desc=s.short||ALL[idx].desc;}else{ALL.unshift({t:s.t||k,img:s.img||k+'.jpg',desc:s.short||k});}});}
+ }catch(e){}
+ render(ALL);
 }
-function render(list){
-  document.getElementById('grid').innerHTML=list.map(m=>`
-    <div class="card" onclick='openStory(${JSON.stringify(m.t||m.title).replace(/'/g,"&#39;")})'>
-      <img src="${m.img||m.image}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
-      <div class="info"><b>${m.t||m.title}</b><p>${m.short||m.desc||''}</p><p style="color:#ff8a00;margin-top:6px">${(m.long||'').substring(0,120)}...</p></div>
-    </div>
-  `).join('');
-}
-function openStory(title){
-  let found=ALL.find(x=>(x.t||x.title)===title)||{t:title};
-  localStorage.setItem('zeenat_play',JSON.stringify(found));
-  location.href='story.html';
-}
-function doSearch(){
-  let q=document.getElementById('search').value.toUpperCase();
-  render(ALL.filter(m=>(m.t||m.title||'').toUpperCase().includes(q)));
-}
+function render(list){document.getElementById('grid').innerHTML=list.map(m=>`<div class="card" onclick="openStory('${m.t.replace(/'/g,"\\'")}')"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/90x120/111/fff?text=No'"><div class="info"><b>${m.t}</b><p>${m.desc}</p></div></div>`).join('');}
+function openStory(title){let f=ALL.find(x=>x.t===title)||{t:title}; localStorage.setItem('zeenat_play',JSON.stringify(f)); localStorage.setItem('zeenat_last_title',title); location.href='story.html?title='+encodeURIComponent(title);}
+function doSearch(){let q=document.getElementById('s').value.toUpperCase(); render(ALL.filter(m=>m.t.toUpperCase().includes(q)));}
 load();
 </script>
 </body>
