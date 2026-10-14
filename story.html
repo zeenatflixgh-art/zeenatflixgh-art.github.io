@@ -7,7 +7,7 @@
 body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:12px}
 .topBar{background:linear-gradient(90deg,#ff0055,#ff8a00);padding:12px;border-radius:20px;display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .backBtn{background:#fff;color:#000;padding:8px 16px;border-radius:20px;font-weight:900;text-decoration:none;font-size:13px}
-.poster{width:100%;max-height:420px;object-fit:contain;background:#000;border-radius:12px}
+.poster{width:100%;max-height:420px;object-fit:contain;background:#000;border-radius:12px;filter:brightness(1.1)}
 .title{font-size:22px;font-weight:900;margin:12px 0 6px}
 .metaRow{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .metaChip{background:#1a1a1a;border:1px solid #222;padding:6px 12px;border-radius:20px;font-size:12px}
@@ -67,8 +67,23 @@ let db=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}');
 let custom=db[m.t||m.title]||m;
 let viewsKey='views_'+id, likesKey='likes_'+id, likedKey='liked_'+id, commentsKey='comments_'+id, followersKey='followers_'+id, followedKey='followed_'+id;
 function getNum(k,d=0){return parseInt(localStorage.getItem(k)||d);}
+
+// NEW SYNC FUNCTION - FIXES GRID 0 0 0
+function syncToGrid(title, views, likes, comments, followers){
+ let all=JSON.parse(localStorage.getItem('zeenat_all_stats')||'{}');
+ let key=(title||m.t||m.title||'').toUpperCase();
+ if(!key) return;
+ if(!all[key]) all[key]={};
+ if(views!=null) all[key].views=views;
+ if(likes!=null) all[key].likes=likes;
+ if(comments!=null) all[key].comments=comments;
+ if(followers!=null) all[key].following=followers;
+ if(custom.img||m.img) all[key].img=custom.img||m.img;
+ all[key].t=title||m.t||m.title;
+ localStorage.setItem('zeenat_all_stats', JSON.stringify(all));
+}
+
 async function init(){
- // Try to load from stories.json if not in localStorage
  try{
    let res=await fetch('stories.json?v='+Date.now());
    if(res.ok){
@@ -76,13 +91,12 @@ async function init(){
      let key=m.t||m.title;
      if(json[key] && (!db[key] ||!db[key].full)){
        custom={...json[key],...custom,...json[key]};
-       // merge json data over m if custom missing full
        if(!custom.full || custom.full.includes('No story yet')){
          custom=json[key];
        }
      }
    }
- }catch(e){ console.log('stories.json fetch failed',e); }
+ }catch(e){}
 
 document.getElementById('poster').src=custom.img||m.img||'';
 document.getElementById('title').innerText=custom.t||m.t||m.title||'';
@@ -97,19 +111,25 @@ let chars=custom.characters||[];
 let charBox=document.getElementById('charBox');
 if(chars.length>0){document.getElementById('charGrid').innerHTML=chars.map(c=>`<div class="charCard"><b>👤 ${c.name}</b><span>${c.role||'Character'}</span></div>`).join(''); charBox.style.display='block';}
 else {if(custom.full && custom.full.length>50){charBox.style.display='none';} else {document.getElementById('charGrid').innerHTML=`<p style="color:#888;text-align:center">🚀 No characters yet<br>Will post them soon! Follow @zeenat69.sonkowa</p>`;}}
+
 let fullText=custom.full||`🚀 No story yet - Will post them soon!
-
 This story "${m.t||m.title}" is coming soon.
-
 Follow TikTok @zeenat69.sonkowa for updates 💚`;
 let html=fullText.split('\n').filter(x=>x.trim()).map(line=>{let idx=line.indexOf(':'); if(idx>0 && idx<35){let name=line.substring(0,idx).trim(); let text=line.substring(idx+1).trim(); return `<div class="storyLine"><div class="charName">${name}:</div><div>${text}</div></div>`;} else {return `<div class="storyLine"><div>${line}</div></div>`;}}).join('');
 document.getElementById('story').innerHTML=html; renderComments();
+
+// SYNC VIEW TO GRID
+let cArr=JSON.parse(localStorage.getItem(commentsKey)||'[]');
+syncToGrid(custom.t||m.t||m.title, v, l, cArr.length, f);
 }
-function doLike(){if(localStorage.getItem(likedKey))return; let l=getNum(likesKey,0)+1; localStorage.setItem(likesKey,l); localStorage.setItem(likedKey,'1'); document.getElementById('likes').innerText='❤️ '+l+' likes'; document.getElementById('likeBtn').innerText='💖 Liked';}
-function doFollow(){let btn=document.getElementById('followBtn'); if(localStorage.getItem(followedKey)){let f=Math.max(0,getNum(followersKey,1)-1); localStorage.setItem(followersKey,f); localStorage.removeItem(followedKey); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='+ Follow Zeenat 💚'; btn.classList.remove('following');} else {let f=getNum(followersKey,0)+1; localStorage.setItem(followersKey,f); localStorage.setItem(followedKey,'1'); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='✅ Following Zeenat 💚'; btn.classList.add('following');}}
+
+function doLike(){if(localStorage.getItem(likedKey))return; let l=getNum(likesKey,0)+1; localStorage.setItem(likesKey,l); localStorage.setItem(likedKey,'1'); document.getElementById('likes').innerText='❤️ '+l+' likes'; document.getElementById('likeBtn').innerText='💖 Liked'; let v=getNum(viewsKey,0); let f=getNum(followersKey,0); let cArr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); syncToGrid(custom.t||m.t||m.title, v, l, cArr.length, f);}
+
+function doFollow(){let btn=document.getElementById('followBtn'); if(localStorage.getItem(followedKey)){let f=Math.max(0,getNum(followersKey,1)-1); localStorage.setItem(followersKey,f); localStorage.removeItem(followedKey); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='+ Follow Zeenat 💚'; btn.classList.remove('following'); let v=getNum(viewsKey,0); let l=getNum(likesKey,0); let cArr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); syncToGrid(custom.t||m.t||m.title, v, l, cArr.length, f);} else {let f=getNum(followersKey,0)+1; localStorage.setItem(followersKey,f); localStorage.setItem(followedKey,'1'); document.getElementById('followers').innerText='👥 '+f+' followers'; btn.innerText='✅ Following Zeenat 💚'; btn.classList.add('following'); let v=getNum(viewsKey,0); let l=getNum(likesKey,0); let cArr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); syncToGrid(custom.t||m.t||m.title, v, l, cArr.length, f);}}
+
 function shareLink(){let url='https://zeenatflixgh-art.github.io'; if(navigator.share){navigator.share({title:custom.t||m.t, text:custom.short||'', url:url});} else {copyLink();}}
 function copyLink(){navigator.clipboard.writeText('https://zeenatflixgh-art.github.io'); alert('Link Copied!');}
-function addComment(){let inp=document.getElementById('commentInput'); if(!inp.value.trim())return; let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); arr.push({text:inp.value, time:new Date().toLocaleString()}); localStorage.setItem(commentsKey,JSON.stringify(arr)); inp.value=''; renderComments();}
+function addComment(){let inp=document.getElementById('commentInput'); if(!inp.value.trim())return; let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); arr.push({text:inp.value, time:new Date().toLocaleString()}); localStorage.setItem(commentsKey,JSON.stringify(arr)); inp.value=''; renderComments(); let v=getNum(viewsKey,0); let l=getNum(likesKey,0); let f=getNum(followersKey,0); syncToGrid(custom.t||m.t||m.title, v, l, arr.length, f);}
 function renderComments(){let arr=JSON.parse(localStorage.getItem(commentsKey)||'[]'); document.getElementById('comCount').innerText='💬 '+arr.length+' comments'; document.getElementById('commentList').innerHTML=arr.map(c=>`<div class="cItem">👤 ${c.text}<br><small style="color:#888">${c.time}</small></div>`).join('')||'<p style="color:#666;font-size:12px">No comments yet. Be first!</p>';}
 init();
 </script>
