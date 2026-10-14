@@ -67,7 +67,23 @@ let db=JSON.parse(localStorage.getItem('zeenat_stories_db')||'{}');
 let custom=db[m.t||m.title]||m;
 let viewsKey='views_'+id, likesKey='likes_'+id, likedKey='liked_'+id, commentsKey='comments_'+id, followersKey='followers_'+id, followedKey='followed_'+id;
 function getNum(k,d=0){return parseInt(localStorage.getItem(k)||d);}
-function init(){
+async function init(){
+ // Try to load from stories.json if not in localStorage
+ try{
+   let res=await fetch('stories.json?v='+Date.now());
+   if(res.ok){
+     let json=await res.json();
+     let key=m.t||m.title;
+     if(json[key] && (!db[key] ||!db[key].full)){
+       custom={...json[key],...custom,...json[key]};
+       // merge json data over m if custom missing full
+       if(!custom.full || custom.full.includes('No story yet')){
+         custom=json[key];
+       }
+     }
+   }
+ }catch(e){ console.log('stories.json fetch failed',e); }
+
 document.getElementById('poster').src=custom.img||m.img||'';
 document.getElementById('title').innerText=custom.t||m.t||m.title||'';
 document.getElementById('short').innerText=custom.short||m.desc||'🚀 No story yet - Will post them soon!';
