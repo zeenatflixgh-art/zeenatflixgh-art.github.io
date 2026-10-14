@@ -1,89 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4023320426859249" crossorigin="anonymous"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD PEOPLE - ZEENATFLIX 22 Movies | Zeenat69 Sonkowa</title>
-<link rel="canonical" href="https://zeenatflixgh-art.github.io/world.html">
+<title>World - ZEENATFLIX</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
-.top{background:linear-gradient(90deg,#00c853,#0091ea);margin:8px;padding:16px;border-radius:18px;text-align:center}
-.top h1{margin:0;font-size:22px;font-weight:900}.top p{margin:4px 0 0;font-size:13px}
-.nav{margin-top:8px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.nav a{color:#fff;text-decoration:none;background:#000;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
-.adminHidden{display:none!important}
-.search{margin:12px;background:#1a1a1a;border-radius:30px;padding:12px 16px;display:flex;gap:8px;border:1px solid #222}
-.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#151515;border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
-.card img{width:100%;height:240px;object-fit:cover;display:block}
-.newBadge{position:absolute;top:8px;right:8px;background:#00c853;color:#fff;padding:4px 8px;border-radius:12px;font-size:10px;font-weight:900;z-index:3}
-.newBadgeNew{background:#ff0055}
-.info{padding:8px}.title{font-weight:800;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sub{font-size:11px;color:#aaa;margin-top:2px;height:32px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.meta{font-size:11px;color:#888;margin-top:4px;display:flex;gap:6px;flex-wrap:wrap}
-.tiktokZone{margin:16px;background:linear-gradient(135deg,#000,#1a1a1a);border:2px solid #00c853;border-radius:16px;padding:18px;text-align:center}
+body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:12px}
+.topBar{background:linear-gradient(90deg,#ff0055,#ff8a00);padding:12px;border-radius:20px;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.backBtn{background:#fff;color:#000;padding:8px 16px;border-radius:20px;font-weight:900;text-decoration:none;font-size:13px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{background:#1a1a1a;border:1px solid #222;border-radius:12px;display:flex;gap:10px;padding:10px}
+.card img{width:90px;height:120px;object-fit:cover;border-radius:8px;background:#000}
+.card .info{flex:1}
+.card .info b{font-size:14px;display:block;margin-bottom:4px}
+.card .info p{font-size:12px;color:#aaa;margin:0;line-height:1.4}
+.search{width:100%;background:#1a1a1a;border:1px solid #222;color:#fff;padding:12px;border-radius:12px;margin-bottom:12px;outline:none}
 </style>
 </head>
 <body>
-<div class="top">
-<h1>🌍 WORLD PEOPLE</h1>
-<p>Global Stories - 22 Movies - Tap to Read! 🌍</p>
-<div class="nav"><a href="index.html">← Back to Ghana 🇬🇭</a><a href="admin.html" class="adminHidden">👑 CEO Admin</a></div>
-</div>
-<div class="search">🔍 <input id="sW" placeholder="Search World..." oninput="filterW()"></div>
-<div id="gridW" class="grid"></div>
-<div class="tiktokZone">
-<h2 style="margin:0;color:#00c853">📱 TikTok Zone - @zeenat69.sonkowa</h2>
-<p style="color:#fff;font-weight:800;margin:8px 0">🧕🏻Zeenat69🌹Sonkowa🧕🏻🇬🇭</p>
-<p style="color:#ffcc00;font-weight:900">💚 @zeenat69.sonkowa 💚</p>
-<button onclick="window.open('https://www.tiktok.com/@zeenat69.sonkowa','_blank')" style="background:linear-gradient(90deg,#00c853,#0091ea);color:#fff;padding:12px 22px;border-radius:25px;border:none;font-weight:900;margin-top:10px;cursor:pointer">🔥 Follow @zeenat69.sonkowa</button>
-</div>
+<div class="topBar"><a class="backBtn" href="index.html">← Home</a><b>🌍 WORLD - All Stories</b></div>
+<input id="search" class="search" placeholder="🔍 Search world..." oninput="doSearch()">
+<div id="grid" class="grid"></div>
 <script>
-const MOVIES=[
-{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",views:42,likes:5,desc:"One year later, Adaeze risks everything...",isNew:false,free:true},
-{t:"THE RIVER BRIDE PART 3 - THE FINAL END",img:"RIVER_BRIDE_PART_3_-_THE_FINAL_END.jpg",views:51,likes:6,desc:"Morning has come. Adaeze must return...",isNew:false,free:true},
-{t:"ANANSE AND THE VILLAGE THAT NEVER SLEPT",img:"ANANSE_AND_THE_VILLAGE_THAT_NEVER_SLEPT.jpg",views:34,likes:3,desc:"Akokrom village near Kumasi cursed...",isNew:false,free:true},
-{t:"THE STOLEN BABY",img:"THE-STOLEN-BABY.jpg",views:112,likes:12,desc:"A Mother's Worst Nightmare",isNew:false,free:true},
-{t:"THE SLAVE TRADE",img:"THE-SLAVE-TRADE.jpg",views:67,likes:8,desc:"The Pot That Refused To Cross The Sea",isNew:false,free:true},
-{t:"SHATTERED VOWS",img:"SHATTERED-VOWS.jpg",views:45,likes:4,desc:"He broke his vow on wedding...",isNew:false,free:true},
-{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",views:18,likes:2,desc:"The Vanishing of Maame Serwaa",isNew:false,free:true},
-{t:"THE FOOD SELLER",img:"THE-FOOD-SELLER.jpg",views:89,likes:9,desc:"Monica's Secret",isNew:false,free:true},
-{t:"AMARA",img:"AMARA.jpg",views:26,likes:1,desc:"A girl who wanted Accra",isNew:false,free:true},
-{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",views:31,likes:3,desc:"Secret in Kumasi Library",isNew:false,free:true},
-{t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",views:42,likes:5,desc:"Bride of River Tano",isNew:false,free:true},
-{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",views:22,likes:2,desc:"Obroni in Ashanti village",isNew:false,free:true},
-{t:"THE TWINS",img:"THE-TWINS.jpg",views:58,likes:6,desc:"Twins with one destiny",isNew:false,free:true},
-{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",views:27,likes:2,desc:"Hunter who gave everything",isNew:false,free:true},
-{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",views:19,likes:1,desc:"Headmaster secret 1985",isNew:false,free:true},
-{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",views:0,likes:0,desc:"Coming Soon - When love turns to venom...",isNew:true,free:true},
-{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL.jpg",views:0,likes:0,desc:"Coming Soon - Abogbloshie Market Accra",isNew:true,free:true},
-{t:"THE GOLDEN CALABASH PART 1",img:"THE-GOLDEN-CALABASH.jpg",views:0,likes:0,desc:"Coming Soon - A River Gift...",isNew:true,free:true},
-{t:"SAUDI WAHALA - They sold me for $4000",img:"SAUDI-WAHALA.jpg",views:0,likes:0,desc:"Coming Soon - From Anambra to Saudi",isNew:true,free:true},
-{t:"HE SLEPT WITH MY SISTER ON MY WEDDING DAY",img:"WEDDING-BETRAYAL.jpg",views:0,likes:0,desc:"Coming Soon - Betrayal. Lies.",isNew:true,free:true},
-{t:"THE HIDDEN SECRET PART 1",img:"THE-HIDDEN-SECRET.jpg",views:0,likes:0,desc:"Coming Soon - Coffin opened in rain",isNew:true,free:true},
-{t:"THE MARKET WITCH - Kaneshie Market Witch",img:"THE-MARKET-WITCH.jpg",views:0,likes:0,desc:"Coming Soon - She Sells Tomatoes...",isNew:true,free:true}
+const FALLBACK=[
+{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"THE-RIVER-BRIDE-PART-2-THE-LAST-NIGHT.jpg",short:"River bride returns",long:"Full synopsis of River Bride Part 2"},
+{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",short:"Poor waitress marries billionaire who is snake at midnight",long:"Full story of Sandra and python husband"},
+{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL-PART-1.jpg",short:"Kayayo girl story",long:"Kayayo struggles in Accra"}
 ];
-function renderW(list){
- const g=document.getElementById('gridW'); g.innerHTML='';
- list.forEach(m=>{
-  let badge=m.isNew?`<div class="newBadge newBadgeNew">🆕 NEW - Coming Soon</div>`:`<div class="newBadge">🔓 FREE</div>`;
-  let border=m.isNew?'1px solid #ff0055':'2px solid #00c853';
-  let meta=m.isNew?`<div class="meta"><span>🆕 Coming Soon</span></div>`:`<div class="meta"><span>👁️ ${m.views}</span><span>❤️ ${m.likes}</span></div>`;
-  let d=document.createElement('div'); d.className='card'; d.style.border=border;
-  d.innerHTML=`<img src="${m.img}" onerror="this.src='https://via.placeholder.com/400x600/111/fff?text=${encodeURIComponent(m.t)}'">${badge}<div class="info"><div class="title">${m.t}</div><div class="sub">${m.desc}</div>${meta}</div>`;
-  d.onclick=()=>{localStorage.setItem('zeenat_play',JSON.stringify(m)); location.href='story.html';};
-  g.appendChild(d);
- });
+let ALL=[];
+async function load(){
+  try{
+    let r=await fetch('stories.json?v='+Date.now());
+    if(r.ok){
+      let j=await r.json();
+      let fromJson=Object.values(j);
+      let seen=new Set();
+      ALL=[];
+      [...fromJson, ...FALLBACK].forEach(m=>{
+        let k=(m.t||m.title||'').toUpperCase();
+        if(k && !seen.has(k)){seen.add(k); ALL.push(m);}
+      });
+    }else{ALL=FALLBACK;}
+  }catch(e){ALL=FALLBACK;}
+  render(ALL);
 }
-function filterW(){let q=document.getElementById('sW').value.toLowerCase(); renderW(MOVIES.filter(m=>m.t.toLowerCase().includes(q)));}
-renderW(MOVIES);
-if(localStorage.getItem('zeenat_admin')==='yes'){document.querySelectorAll('.adminHidden').forEach(e=>e.style.display='inline-block');}
+function render(list){
+  document.getElementById('grid').innerHTML=list.map(m=>`
+    <div class="card" onclick='openStory(${JSON.stringify(m.t||m.title).replace(/'/g,"&#39;")})'>
+      <img src="${m.img||m.image}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+      <div class="info"><b>${m.t||m.title}</b><p>${m.short||m.desc||''}</p><p style="color:#ff8a00;margin-top:6px">${(m.long||'').substring(0,120)}...</p></div>
+    </div>
+  `).join('');
+}
+function openStory(title){
+  let found=ALL.find(x=>(x.t||x.title)===title)||{t:title};
+  localStorage.setItem('zeenat_play',JSON.stringify(found));
+  location.href='story.html';
+}
+function doSearch(){
+  let q=document.getElementById('search').value.toUpperCase();
+  render(ALL.filter(m=>(m.t||m.title||'').toUpperCase().includes(q)));
+}
+load();
 </script>
-<div style="text-align:center;padding:20px;border-top:1px solid #222;margin-top:20px">
-<a href="about.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">About</a>
-<a href="contact.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">Contact</a>
-<a href="privacy.html" style="color:#aaa;margin:0 10px;text-decoration:none;font-size:12px">Privacy</a>
-</div>
 </body>
 </html>
