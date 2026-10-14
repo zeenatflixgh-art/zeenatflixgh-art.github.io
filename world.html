@@ -3,54 +3,63 @@
 <head>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4023320426859249" crossorigin="anonymous"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World - ZEENATFLIX</title>
+<title>WORLD PEOPLE - ZEENATFLIX</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
-.top{background:linear-gradient(90deg,#ff6a00,#ff0055);margin:8px;padding:16px;border-radius:18px;text-align:center}
-.top h1{margin:0;font-size:20px;font-weight:900}
-.nav{margin-top:8px;display:flex;gap:8px;justify-content:center}
-.nav a{color:#fff;text-decoration:none;background:#000;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
+.top{background:linear-gradient(90deg,#00c853,#0091ea);margin:8px;padding:22px 16px;border-radius:18px;text-align:center}
+.top h1{margin:0;font-size:22px;font-weight:900}
+.top p{margin:8px 0 12px;font-size:14px;opacity:0.95}
+.nav{display:flex;justify-content:center}
+.nav a{color:#fff;text-decoration:none;background:#000;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:800}
 .adminHidden{display:none!important}
 .search{margin:12px;background:#1a1a1a;border-radius:30px;padding:12px 16px;display:flex;gap:8px;border:1px solid #222}
 .search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
 .card{background:#151515;border-radius:12px;overflow:hidden;border:1px solid #222;cursor:pointer;position:relative}
-.card img{width:100%;height:210px;object-fit:cover;display:block;background:#000}
-.info{padding:8px}.info b{font-size:12px;display:block;line-height:1.2;height:32px;overflow:hidden}
-.count{font-size:11px;color:#ff8a00;margin:0 10px 6px}
-.badge{position:absolute;top:6px;right:6px;background:#00c853;color:#fff;font-size:9px;padding:3px 7px;border-radius:10px;font-weight:800}
-.meta{display:flex;gap:6px;margin-top:4px;font-size:10px;color:#aaa}
+.card img{width:100%;height:260px;object-fit:cover;display:block;background:#000}
+.lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-35%);background:rgba(0,0,0,0.75);width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #ffca28;font-size:22px}
+.info{padding:8px}
+.info b{font-size:11px;display:block;line-height:1.2;height:30px;overflow:hidden;text-transform:uppercase}
+.info span.sub{font-size:10px;color:#aaa;display:block;margin-top:2px;height:16px;overflow:hidden}
+.meta{display:flex;gap:10px;margin-top:6px;font-size:10px;color:#888}
+.meta i{font-style:normal}
+.count{font-size:11px;color:#00e676;margin:0 12px}
 </style>
 </head>
 <body>
-<div class="top"><h1>🌍 WORLD - All Stories</h1><div class="nav"><a href="index.html">← Home</a><a href="admin.html" class="adminHidden">👑 Admin</a></div></div>
-<div class="search">🔍 <input id="s" placeholder="Search world... SNAKE" oninput="doSearch()"></div>
-<div id="count" class="count">Loading 22...</div>
+<div class="top">
+<h1>🌍 WORLD PEOPLE</h1>
+<p>Global Stories - Tap to Read! 🌍</p>
+<div class="nav"><a href="index.html">← Back Home</a><a href="admin.html" class="adminHidden">👑 Admin</a></div>
+</div>
+<div class="search">🔍 <input id="s" placeholder="Search World..." oninput="doSearch()"></div>
+<div id="count" class="count">✅ 22 stories</div>
 <div id="grid" class="grid"></div>
 <script>
 const MOVIES=[
-{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",short:"One year later, Adaeze risks everything...",long:"Full synopsis"},
-{t:"THE RIVER BRIDE PART 3 - THE FINAL END",img:"RIVER_BRIDE_PART_3_-_THE_FINAL_END.jpg",short:"Morning has come...",long:"Final end"},
-{t:"ANANSE AND THE VILLAGE THAT NEVER SLEPT",img:"ANANSE_AND_THE_VILLAGE_THAT_NEVER_SLEPT.jpg",short:"Akokrom village cursed...",long:"Ananse story"},
-{t:"THE STOLEN BABY",img:"THE-STOLEN-BABY.jpg",short:"A Mother's Worst Nightmare",long:"Stolen baby drama"},
-{t:"THE SLAVE TRADE",img:"THE-SLAVE-TRADE.jpg",short:"The Pot That Refused To Cross The Sea",long:"Slave trade"},
-{t:"SHATTERED VOWS",img:"SHATTERED-VOWS.jpg",short:"He broke his vow...",long:"Shattered vows"},
-{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",short:"The Vanishing of Maame Serwaa",long:"Abandoned huts"},
-{t:"THE FOOD SELLER",img:"THE-FOOD-SELLER.jpg",short:"Monica's Secret",long:"Food seller"},
-{t:"AMARA",img:"AMARA.jpg",short:"A girl who wanted Accra",long:"Amara"},
-{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",short:"Secret in Kumasi Library",long:"Library secret"},
-{t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",short:"Bride of River Tano",long:"River bride"},
-{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",short:"Obroni in Ashanti village",long:"White man"},
-{t:"THE TWINS",img:"THE-TWINS.jpg",short:"Twins with one destiny",long:"Twins"},
-{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",short:"Hunter who gave everything",long:"Hunter"},
-{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",short:"Headmaster secret 1985",long:"Headmaster"},
-{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",short:"Poor waitress marries billionaire who is snake at midnight - money ritual",long:"Full story of Sandra and python husband - When love turns to venom"},
-{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL.jpg",short:"Abogbloshie Market Accra",long:"Kayayo girl"},
-{t:"THE GOLDEN CALABASH PART 1",img:"THE-GOLDEN-CALABASH.jpg",short:"A River Gift... A Cursed Blessing",long:"Golden calabash"},
-{t:"SAUDI WAHALA - They sold me for $4000",img:"SAUDI-WAHALA.jpg",short:"From Anambra to Saudi - Based on true story",long:"Saudi wahala"},
-{t:"HE SLEPT WITH MY SISTER ON MY WEDDING DAY",img:"WEDDING-BETRAYAL.jpg",short:"Betrayal. Lies. No way back.",long:"Wedding betrayal"},
-{t:"THE HIDDEN SECRET PART 1",img:"THE-HIDDEN-SECRET.jpg",short:"A coffin opened in rain",long:"Hidden secret"},
-{t:"THE MARKET WITCH - Kaneshie Market Witch",img:"THE-MARKET-WITCH.jpg",short:"She Sells Tomatoes... She Steals Destiny",long:"Market witch"}
+{t:"THE STOLEN BABY",img:"THE-STOLEN-BABY.jpg",short:"A Mother's Worst Nightmare",views:"3.1M",likes:"125K",comments:"8.2K"},
+{t:"MISSING BUT FOUND",img:"MISSING-BUT-FOUND.jpg",short:"Lost 7 Years, Found Selling Pure Water",views:"2.0M",likes:"98K",comments:"5.4K"},
+{t:"THE RIVER BRIDE PART 2 - THE LAST NIGHT",img:"RIVER_BRIDE_PART_2_-_THE_LAST_NIGHT.jpg",short:"One year later, Adaeze risks everything..."},
+{t:"THE RIVER BRIDE PART 3 - THE FINAL END",img:"RIVER_BRIDE_PART_3_-_THE_FINAL_END.jpg",short:"Morning has come..."},
+{t:"ANANSE AND THE VILLAGE THAT NEVER SLEPT",img:"ANANSE_AND_THE_VILLAGE_THAT_NEVER_SLEPT.jpg",short:"Akokrom village cursed..."},
+{t:"THE SLAVE TRADE",img:"THE-SLAVE-TRADE.jpg",short:"The Pot That Refused To Cross The Sea"},
+{t:"SHATTERED VOWS",img:"SHATTERED-VOWS.jpg",short:"He broke his vow..."},
+{t:"THE ABANDONED HUTS",img:"THE-ABANDONED-HUTS.jpg",short:"The Vanishing of Maame Serwaa"},
+{t:"THE FOOD SELLER",img:"THE-FOOD-SELLER.jpg",short:"Monica's Secret"},
+{t:"AMARA",img:"AMARA.jpg",short:"A girl who wanted Accra"},
+{t:"THE LIBRARY SECRET",img:"THE-LIBRARY-SECRET.jpg",short:"Secret in Kumasi Library"},
+{t:"THE RIVER BRIDE",img:"THE-RIVER-BRIDE.jpg",short:"Bride of River Tano"},
+{t:"THE WHITE MAN",img:"THE-WHITE-MAN.jpg",short:"Obroni in Ashanti village"},
+{t:"THE TWINS",img:"THE-TWINS.jpg",short:"Twins with one destiny"},
+{t:"THE GENEROUS HUNTER",img:"THE-GENEROUS-HUNTER.jpg",short:"Hunter who gave everything"},
+{t:"THE HEADMASTER SECRET",img:"THE-HEADMASTER-SECRET.jpg",short:"Headmaster secret 1985"},
+{t:"MY HUSBAND IS A SNAKE",img:"MY-HUSBAND-IS-A-SNAKE.jpg",short:"Poor waitress marries billionaire snake"},
+{t:"THE KAYAYO GIRL PART 1",img:"THE-KAYAYO-GIRL.jpg",short:"Abogbloshie Market Accra"},
+{t:"THE GOLDEN CALABASH PART 1",img:"THE-GOLDEN-CALABASH.jpg",short:"A River Gift... A Cursed Blessing"},
+{t:"SAUDI WAHALA - They sold me for $4000",img:"SAUDI-WAHALA.jpg",short:"From Anambra to Saudi"},
+{t:"HE SLEPT WITH MY SISTER ON MY WEDDING DAY",img:"WEDDING-BETRAYAL.jpg",short:"Betrayal. Lies."},
+{t:"THE HIDDEN SECRET PART 1",img:"THE-HIDDEN-SECRET.jpg",short:"A coffin opened in rain"},
+{t:"THE MARKET WITCH - Kaneshie Market Witch",img:"THE-MARKET-WITCH.jpg",short:"She Sells Tomatoes..."}
 ];
 let ALL=[...MOVIES];
 async function load(){
@@ -60,23 +69,25 @@ async function load(){
    let j=await r.json(); let map={}; ALL.forEach(m=>map[m.t.toUpperCase()]=m);
    Object.keys(j).forEach(k=>{
     let s=j[k]; let old=map[k.toUpperCase()]||{};
-    map[k.toUpperCase()]={t:s.t||old.t||k, img:s.img||old.img, short:s.short||old.short||k, long:s.long||old.long||'', views:s.views!=null?s.views:old.views||0, likes:s.likes!=null?s.likes:old.likes||0, comments:s.comments!=null?s.comments:old.comments||0, following:s.following||0, free:s.free};
+    map[k.toUpperCase()]={t:s.t||old.t||k, img:s.img||old.img, short:s.short||old.short||k, long:s.long||old.long||'', views:s.views||old.views||0, likes:s.likes||old.likes||0, comments:s.comments||old.comments||0, free:s.free};
    });
    ALL=Object.values(map);
-   document.getElementById('count').textContent=`✅ ${ALL.length} stories live`;
   }
- }catch(e){document.getElementById('count').textContent=`📱 Showing ${ALL.length} stories`;}
+ }catch(e){}
  render(ALL);
 }
 function render(list){
- document.getElementById('grid').innerHTML=list.map(m=>`
-  <div class="card" onclick="openStory('${m.t.replace(/'/g,"\\'")}')">
-   <div class="badge">${m.free===false?'🔒':'FREE'}</div>
+ document.getElementById('grid').innerHTML=list.map(m=>{
+  let isLock = m.free===false;
+  let v = m.views||0; let l = m.likes||0; let c = m.comments||0;
+  return `<div class="card" onclick="openStory('${m.t.replace(/'/g,"\\'")}')">
+   ${isLock?'<div class="lock">🔒</div>':''}
    <img src="${m.img}" onerror="this.src='https://via.placeholder.com/300x400/111/fff?text=No'">
-   <div class="info"><b>${m.t}</b><div class="meta"><span>👁️ ${m.views||0}</span><span>❤️ ${m.likes||0}</span><span>💬 ${m.comments||0}</span></div></div>
-  </div>`).join('');
+   <div class="info"><b>${m.t}</b><span class="sub">${(m.short||'').substring(0,45)}</span><div class="meta"><span>👁️ ${v}</span><span>❤️ ${l}</span><span>💬 ${c}</span><span style="margin-left:auto">World</span></div></div>
+  </div>`;
+ }).join('');
 }
-function openStory(title){let f=ALL.find(x=>x.t===title)||{t:title}; localStorage.setItem('zeenat_play',JSON.stringify(f)); localStorage.setItem('zeenat_last_title',title); location.href='story.html?title='+encodeURIComponent(title);}
+function openStory(t){let f=ALL.find(x=>x.t===t)||{t:t}; localStorage.setItem('zeenat_play',JSON.stringify(f)); localStorage.setItem('zeenat_last_title',t); location.href='story.html?title='+encodeURIComponent(t);}
 function doSearch(){let q=document.getElementById('s').value.toUpperCase(); render(ALL.filter(m=>m.t.toUpperCase().includes(q)));}
 if(localStorage.getItem('zeenat_admin')==='yes'){document.querySelectorAll('.adminHidden').forEach(e=>e.style.display='inline-block');}
 load();
