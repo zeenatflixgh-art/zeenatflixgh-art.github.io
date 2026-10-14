@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4023320426859249" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4023320426859249" crossorigin="anonymous"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World - ZEENATFLIX</title>
+<title>ZEENATFLIX - Home</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
 .top{background:linear-gradient(90deg,#ff6a00,#ff0055);margin:8px;padding:16px;border-radius:18px;text-align:center}
@@ -13,21 +13,23 @@
 .adminHidden{display:none!important}
 .search{margin:12px;background:#1a1a1a;border-radius:30px;padding:12px 16px;display:flex;gap:8px;border:1px solid #222}
 .search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
-.grid{display:grid;grid-template-columns:1fr;gap:12px;padding:10px}
-.card{background:#151515;border-radius:12px;display:flex;gap:10px;padding:10px;border:1px solid #222;cursor:pointer}
-.card img{width:90px;height:120px;object-fit:cover;border-radius:8px;background:#000;flex-shrink:0}
-.info{flex:1}
-.info b{font-size:14px;display:block;margin-bottom:4px}
-.info p{font-size:12px;color:#aaa;margin:0;line-height:1.4}
+/* GRID FIX - 2 per row like old ZEENATFLIX */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px}
+.card{background:#151515;border-radius:12px;overflow:hidden;border:1px solid #222;cursor:pointer;position:relative}
+.card img{width:100%;height:210px;object-fit:cover;display:block;background:#000}
+.info{padding:8px}
+.info b{font-size:12px;display:block;line-height:1.2;height:32px;overflow:hidden}
 .count{font-size:11px;color:#ff8a00;margin:0 10px 6px}
+.badge{position:absolute;top:6px;right:6px;background:#00c853;color:#fff;font-size:9px;padding:3px 7px;border-radius:10px;font-weight:800}
+.meta{display:flex;gap:6px;margin-top:4px;font-size:10px;color:#aaa}
 </style>
 </head>
 <body>
 <div class="top">
-<h1>🌍 WORLD - All Stories</h1>
-<div class="nav"><a href="index.html">← Home</a><a href="admin.html" class="adminHidden">👑 Admin</a></div>
+<h1>🔥 ZEENATFLIX - Ghana Stories</h1>
+<div class="nav"><a href="world.html">🌍 World →</a><a href="admin.html" class="adminHidden">👑 Admin</a></div>
 </div>
-<div class="search">🔍 <input id="s" placeholder="Search world... SNAKE" oninput="doSearch()"></div>
+<div class="search">🔍 <input id="s" placeholder="Search Ghana... SNAKE" oninput="doSearch()"></div>
 <div id="count" class="count">Loading 22...</div>
 <div id="grid" class="grid"></div>
 <script>
@@ -55,19 +57,16 @@ const MOVIES=[
 {t:"THE HIDDEN SECRET PART 1",img:"THE-HIDDEN-SECRET.jpg",short:"A coffin opened in rain",long:"Hidden secret"},
 {t:"THE MARKET WITCH - Kaneshie Market Witch",img:"THE-MARKET-WITCH.jpg",short:"She Sells Tomatoes... She Steals Destiny",long:"Market witch"}
 ];
-
-let ALL = [...MOVIES];
-
+let ALL=[...MOVIES];
 async function load(){
  try{
    let r=await fetch('stories.json?v='+Date.now());
    if(r.ok){
      let j=await r.json();
-     let map={};
-     ALL.forEach(m=>map[m.t.toUpperCase()]=m);
+     let map={}; ALL.forEach(m=>map[m.t.toUpperCase()]=m);
      Object.keys(j).forEach(k=>{
-       let s=j[k];
-       map[k.toUpperCase()]={t:s.t||k, img:s.img||k.replace(/\s+/g,'-')+'.jpg', short:s.short||s.long||k, long:s.long||s.short||''};
+       let s=j[k]; let old=map[k.toUpperCase()]||{};
+       map[k.toUpperCase()]={t:s.t||old.t||k, img:s.img||old.img||k.replace(/\s+/g,'-')+'.jpg', short:s.short||old.short||k, long:s.long||old.long||'', views:s.views!=null?s.views:old.views||0, likes:s.likes!=null?s.likes:old.likes||0, comments:s.comments!=null?s.comments:old.comments||0, following:s.following||0, free:s.free};
      });
      ALL=Object.values(map);
      document.getElementById('count').textContent=`✅ ${ALL.length} stories live`;
@@ -75,26 +74,17 @@ async function load(){
  }catch(e){document.getElementById('count').textContent=`📱 Showing ${ALL.length} stories`;}
  render(ALL);
 }
-
 function render(list){
  document.getElementById('grid').innerHTML=list.map(m=>`
    <div class="card" onclick="openStory('${m.t.replace(/'/g,"\\'")}')">
-     <img src="${m.img}" onerror="this.src='https://via.placeholder.com/90x120/111/fff?text=No'">
-     <div class="info"><b>${m.t}</b><p>${m.short||''}</p><p style="color:#ff8a00;margin-top:6px">${(m.long||'').substring(0,120)}...</p></div>
+     <div class="badge">${m.free===false?'🔒':'FREE'}</div>
+     <img src="${m.img}" onerror="this.src='https://via.placeholder.com/300x400/111/fff?text=No'">
+     <div class="info"><b>${m.t}</b><div class="meta"><span>👁️ ${m.views||0}</span><span>❤️ ${m.likes||0}</span><span>💬 ${m.comments||0}</span></div></div>
    </div>
  `).join('');
 }
-
-function openStory(title){
- let found=ALL.find(x=>x.t===title)||{t:title};
- localStorage.setItem('zeenat_play',JSON.stringify(found));
- localStorage.setItem('zeenat_last_title',title);
- location.href='story.html?title='+encodeURIComponent(title);
-}
-function doSearch(){
- let q=document.getElementById('s').value.toUpperCase();
- render(ALL.filter(m=>m.t.toUpperCase().includes(q)));
-}
+function openStory(title){let found=ALL.find(x=>x.t===title)||{t:title}; localStorage.setItem('zeenat_play',JSON.stringify(found)); localStorage.setItem('zeenat_last_title',title); location.href='story.html?title='+encodeURIComponent(title);}
+function doSearch(){let q=document.getElementById('s').value.toUpperCase(); render(ALL.filter(m=>m.t.toUpperCase().includes(q)));}
 if(localStorage.getItem('zeenat_admin')==='yes'){document.querySelectorAll('.adminHidden').forEach(e=>e.style.display='inline-block');}
 load();
 </script>
