@@ -1,0 +1,26 @@
+name: Auto Sitemap
+on:
+  push:
+    paths:
+      - 'stories.json'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build sitemap
+        run: |
+          node -e "
+          const fs=require('fs');
+          const j=JSON.parse(fs.readFileSync('stories.json','utf8'));
+          let x='<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n';
+          x+='<url><loc>https://zeenatflixgh-art.github.io/</loc><lastmod>2026-10-16</lastmod></url>\n';
+          for(const k of Object.keys(j)){const id=k.replace(/\s+/g,'-').toUpperCase(); x+='<url><loc>https://zeenatflixgh-art.github.io/?story='+id+'</loc></url>\n';}
+          x+='</urlset>'; fs.writeFileSync('sitemap.xml',x);
+          "
+      - run: |
+          git config user.name "bot"
+          git config user.email "bot@bot.com"
+          git add sitemap.xml
+          git commit -m "auto sitemap" || true
+          git push
